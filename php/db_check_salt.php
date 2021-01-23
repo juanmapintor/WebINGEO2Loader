@@ -8,8 +8,8 @@
     */
     
     if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"])){
-        $mysqli = new mysqli("localhost", "WebINGEOLookup", "WebINGEOLookup", "INGEO");
-        if(!mysqli_connect_errno()){
+        $mysqli = @new mysqli("localhost", "WebINGEOLookup", "WebINGEOLookup", "INGEO");
+        if(!$mysqli->connect_errno){
             $usr_name = $_POST["usr_name"];
             if ($stmt = $mysqli->prepare("SELECT usr_password_salt, is_admin FROM users WHERE usr_name=?")) {
                 $stmt->bind_param("s", $usr_name);

@@ -59,7 +59,7 @@ const httpRequestPromise = (url, params = null, method = 'POST', responseType=""
 /*
     Función que realiza el login una vez que tenemos la "sal" para la contraseña. 
 */
-const loginWithSalt = (user, password, salt, is_admin) => {
+const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
     //Crypto funciona solo en localhost o en conexiones seguras (https)
     crypto.subtle.digest('SHA-256', StringToArrayBuffer(password+salt)).then((hashedPass) => {
         let params = {
@@ -68,8 +68,21 @@ const loginWithSalt = (user, password, salt, is_admin) => {
             is_admin : is_admin
         };
         
-        httpRequestPromise(general_url + 'db_login.php', params).then((response) => {
-            console.log(response);
+        httpRequestPromise(general_url + 'db_login.php', params, 'POST', 'json').then((response) => {
+            console.table(response);
+            if(response.success){
+                //SUCCESSFULL LOGIN CODE
+            } else {
+                responseMsg.setAttribute('style', 'color: red;');
+                if(response.error){
+                    switch(response.error){
+                        case 'E1': responseMsg.innerHTML = 'No se pudo conectar a la base de datos. Comuniquese con un administrador.'; break;
+                        case 'E2': responseMsg.innerHTML = 'El formulario esta mal formateado. Comuniquese con un administrador.'; break;
+                    }
+                } else {
+                    responseMsg.innerHTML = 'Contraseña ingresada incorrecta.';
+                }
+            }
         });
     });
 };
@@ -105,14 +118,13 @@ const login = () => {
                 responseMsg.setAttribute('style', 'color: red;')
                 switch(response.error) {
                     case 'E1': responseMsg.innerHTML = 'Usuario inexistente.'; break;
-                    case 'E2': responseMsg.innerHTML = 'No se ingreso el usuario o contraseña.'; break;
-                    case 'E3': responseMsg.innerHTML = 'No se pudo conectar a la DB. Contactese con un administrador.'; break;
+                    case 'E2': responseMsg.innerHTML = 'No se pudo conectar a la DB. Contactese con un administrador.'; break;
+                    case 'E3': responseMsg.innerHTML = 'No se ingreso el usuario o contraseña.'; break;
                 }
             } else {
                 responseMsg.setAttribute('style', 'color: green;')
-
                 responseMsg.innerHTML = 'Iniciando sesion...';
-                loginWithSalt(usrInput.value, passInput.value, response.salt, response.is_admin);
+                loginWithSalt(usrInput.value, passInput.value, response.salt, response.is_admin, responseMsg);
             }
         }).catch((error) => {
             console.error(error);

@@ -1,3 +1,50 @@
 <?php
-    echo 'Reached';
+if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"]) && isset($_POST["usr_password"]) && !empty($_POST["usr_password"]) && isset($_POST["is_admin"])){
+    session_start();
+    $usr_name = $_POST["usr_name"];
+    $usr_password = $_POST["usr_password"];
+    $is_admin = $_POST["is_admin"];
+
+    $mysqli = @new mysqli("localhost", "WebINGEOLookup", "WebINGEOLookup", "INGEO");
+
+    if(!$mysqli->connect_errno) {
+        if($stmt = $mysqli -> prepare("SELECT idUsers, usr_password, is_admin FROM users WHERE usr_name=?")) {
+            $stmt->bind_param("s", $usr_name);
+            $stmt->execute();
+            $stmt->bind_result($idUser, $fetched_password, $fetched_is_admin);
+            $stmt->fetch();
+            if($usr_password == $fetched_password){
+                $_SESSION["logged_in"] = true;
+                $_SESSION["id_user"] = $idUser;
+                $_SESSION["is_admin"] = $is_admin;
+                $result = [
+                    "success" => true
+                ];
+                header("Content-Type: application/json");
+                echo json_encode($result);
+            } else {
+                $result = [
+                    "success" => false
+                ];
+                header("Content-Type: application/json");
+                echo json_encode($result);
+            }
+            $stmt->close();
+        }
+        $mysqli->close();
+    } else {
+        $result = [
+            "error" => "E1"
+        ];
+        header('Content-Type: application/json');
+        echo json_encode($result);
+    }
+} else {
+    $result = [
+        "error" => "E2"
+    ];
+    header('Content-Type: application/json');
+    echo json_encode($result);
+}
+
 ?>
