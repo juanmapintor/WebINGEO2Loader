@@ -97,16 +97,20 @@ const login = () => {
     let responseMsg = document.getElementById('responseMsg');
 
     if(!usrInput.value || !passInput.value) {
+        responseMsg.setAttribute('style', 'color: red;')
         responseMsg.innerHTML = 'Ingrese un usuario y una contraseña.';
     } else {
         httpRequestPromise(general_url + 'db_check_salt.php', { usr_name: usrInput.value}, 'POST', 'json').then((response) =>{
             if(response.error){
+                responseMsg.setAttribute('style', 'color: red;')
                 switch(response.error) {
                     case 'E1': responseMsg.innerHTML = 'Usuario inexistente.'; break;
                     case 'E2': responseMsg.innerHTML = 'No se ingreso el usuario o contraseña.'; break;
                     case 'E3': responseMsg.innerHTML = 'No se pudo conectar a la DB. Contactese con un administrador.'; break;
                 }
             } else {
+                responseMsg.setAttribute('style', 'color: green;')
+
                 responseMsg.innerHTML = 'Iniciando sesion...';
                 loginWithSalt(usrInput.value, passInput.value, response.salt, response.is_admin);
             }
