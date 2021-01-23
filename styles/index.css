@@ -1,0 +1,42 @@
+html, body {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    max-width: 100%;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 90%;
+    border-radius: 15px;
+    border: 2px darkgray solid;
+}
+
+div > form {
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    width: 100%;
+}
+
+h2, h4, input, button {
+    font-family: sans-serif;
+    margin: 16px;
+}
+
+input, button {
+    font-size: large;
+}
+
+@media (min-width: 768px) {
+    div {
+        width: 40%;
+    }
+}

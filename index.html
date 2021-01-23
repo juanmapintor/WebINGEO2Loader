@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN INGEO</title>
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-    <h2>LOG IN</h2>
-    <input type="text" id="usr_name" placeholder="Nombre de Usuario">
-    <input type="password" id="usr_password" placeholder="Contraseña">
-    <button type="submit" id="submit">INICIAR SESION</button>
+    <div>
+        <h2>LOG IN</h2>
+        <form>
+            <input type="text" id="usr_name" autocomplete="on" placeholder="Nombre de Usuario">
+            <input type="password" id="usr_password" autocomplete="on" placeholder="Contraseña">
+        </form>
+        <button id="submit">INICIAR SESION</button>
+        <h4 id="responseMsg">asdasd</h4>
+    </div>
+    
+   
 
-    <h4 id="responseMsg"></h4>
+
     <script src="scripts/index.js"></script>
 </body>
 </html>
