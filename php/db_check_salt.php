@@ -1,4 +1,12 @@
 <?php
+    /*
+        Este script chequea la existencia del usuario solicitado, y en caso de existir, devuelve su sal y si es 
+        administrador o no.
+
+        Devuelve, en caso satisfactorio, un objeto JSON con claves "salt" y "is_admin",
+        y en caso de error, un objeto JSON con clave "error" que contiene un codigo de error. 
+    */
+    
     if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"])){
         $mysqli = new mysqli("localhost", "WebINGEOLookup", "WebINGEOLookup", "INGEO");
         if(!mysqli_connect_errno()){
