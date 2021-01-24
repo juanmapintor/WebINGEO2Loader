@@ -12,8 +12,11 @@ const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
         };
         
         httpRequestPromise(general_url + 'db_login.php', params, 'POST', 'json').then((response) => {
+            console.table(response);
             if(response.success){
-                if(is_admin) {
+                if(response.first_time){
+                    window.location.href = "firstTime";
+                } else if(is_admin) {
                     window.location.href = "welcomeAdmin";
                 } else {
                     window.location.href = "welcomeUser";
@@ -32,7 +35,6 @@ const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
         });
     });
 };
-
 /*
     Función de login, en primer lugar chechea la existencia del usuario y obtiene su sal.
     Luego, delega el resto del proceso de login a la función "loginWithSalt".
@@ -66,6 +68,7 @@ const login = () => {
 };
 
 window.onload = () => {
+    logOut();
     let submitButton = document.getElementById('submit');
     submitButton.onclick = login;
 };

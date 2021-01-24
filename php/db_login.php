@@ -8,17 +8,18 @@ if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"]) && isset($_POST["usr_
     $mysqli = @new mysqli("localhost", "WebINGEOLookup", "WebINGEOLookup", "INGEO");
 
     if(!$mysqli->connect_errno) {
-        if($stmt = $mysqli -> prepare("SELECT idUsers, usr_password, is_admin FROM users WHERE usr_name=?")) {
+        if($stmt = $mysqli -> prepare("SELECT idUsers, usr_password, is_admin, first_name FROM users WHERE usr_name=?")) {
             $stmt->bind_param("s", $usr_name);
             $stmt->execute();
-            $stmt->bind_result($idUser, $fetched_password, $fetched_is_admin);
+            $stmt->bind_result($idUser, $fetched_password, $fetched_is_admin, $first_name);
             $stmt->fetch();
             if($usr_password == $fetched_password){
                 $_SESSION["logged_in"] = true;
                 $_SESSION["id_user"] = $idUser;
                 $_SESSION["is_admin"] = $is_admin;
                 $result = [
-                    "success" => true
+                    "success" => true,
+                    "first_time" => ($first_name=="PRIMERO")
                 ];
                 header("Content-Type: application/json");
                 echo json_encode($result);
