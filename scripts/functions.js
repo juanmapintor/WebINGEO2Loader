@@ -66,3 +66,15 @@ const ArrayBufferToString = (hashBuffer) => {
     const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
     return hashHex;
 };
+
+/*
+
+Elimina cualquier session existente.
+
+*/
+
+const logOut = () => {
+    httpRequestPromise('http://localhost/WebINGEO2Loader/php/session_end.php').then(()=>{
+        if(location.href != 'http://localhost/WebINGEO2Loader/') location.replace('http://localhost/WebINGEO2Loader/');
+    });
+};
