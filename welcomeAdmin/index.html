@@ -4,8 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMINISTRADOR</title>
+    <link rel="stylesheet" href="welcomeAdmin.css">
 </head>
 <body>
+
+    <div class="tabs">
+        <div class="tab selected">
+            <h4>Usuarios</h4>
+        </div>
+        <div class="tab">
+            <h4>Sectores</h4>
+        </div>
+        <div class="tab">
+            <h4>Articulos</h4>
+        </div>
+        <div class="tab">
+            <h4>Mi Perfil</h4>
+        </div>
+    </div>
+
+    <div class="tabContent selected">
+        <h1>Agregar un nuevo usuario.</h1>
+        <input type="email" id="email" placeholder="mail@mail.com">
+        <label for="is_admin">¿Es administrador?</label>
+        <input type="checkbox" id="is_admin"> 
+        <button id="addUserBtn">AGREGAR</button>
+    </div>
+
+    <div class="tabContent">
+        <h1>Agregar un nuevo sector.</h1>
+        <input type="text" id="sector_category" placeholder="Categoria...">
+        <input type="text" id="sector_name" placeholder="Sector...">
+        <button id="addSectorBtn">AGREGAR</button>
+    </div>
+
+    <div class="tabContent">
+        <h1>Agregar un nuevo articulo.</h1>
+    </div>
+
+    <div class="tabContent">
+        <h1>Mi Perfil.</h1>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="http://localhost/WebINGEO2Loader/scripts/functions.js"></script>
     <script src="welcomeAdmin.js"></script>
