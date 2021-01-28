@@ -1,3 +1,5 @@
+let general_url = 'http://localhost/WebINGEO2Loader/php/';
+
 /*
     Función que "promesifica" una XMLHTTPRequest. Necesita de parametros minimos para funcionar, 
     solo la URL a ser consultada.

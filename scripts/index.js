@@ -1,4 +1,3 @@
-let general_url = 'http://localhost/WebINGEO2Loader/php/';
 /*
     Función que realiza el login una vez que tenemos la "sal" para la contraseña. 
 */
