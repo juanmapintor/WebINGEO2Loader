@@ -19,10 +19,9 @@ html, body {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    
 }
 
-.tab {
+.tab, .pertab {
     display: flex;
     flex: 1;
     justify-content: center;
@@ -30,10 +29,16 @@ html, body {
     opacity: 0.4;
     cursor: pointer;
 }
-
-.tab.selected {
+.pertab > button {
+    margin: 4px;
+}
+.tab.selected, .pertab.selected {
     opacity: 1;
-    border-bottom: 2px lightblue solid;
+    border-bottom: 4px lightblue solid;
+}
+
+.pertab > button {
+    margin: 4px;
 }
 
 .tabContent {
@@ -80,4 +85,10 @@ button:active {
 
 button:focus {
     outline: none;
+}
+
+@media (min-width: 768px) {
+    .tabContent {
+        width: 50%;
+    }
 }

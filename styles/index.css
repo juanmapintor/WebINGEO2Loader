@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap');
+
 html, body {
     height: 100%;
     min-height: 100%;
     width: 100%;
     max-width: 100%;
-    background-color: grey;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,22 +19,38 @@ div {
     width: 90%;
     border-radius: 15px;
     border: 2px darkgray solid;
+    box-shadow: 7px 6px 10px 1px rgba(0, 0, 0, 0.24); 
+
 }
 
 div > form {
     display: flex;
     flex-direction: column;
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
     width: 100%;
 }
 
 h2, h4, input, button {
-    font-family: sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 16px;
 }
 
 input, button {
     font-size: large;
+}
+
+button {
+    width: 70%;
+    min-height: 50px;
+    font-size: larger;
+    border: none;
+    border-radius: 10px;
+    background-color: green; 
+    color: #fff; 
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); 
+    cursor: pointer; 
+    outline: none; 
+    transition: 0.2s all;
 }
 
 @media (min-width: 768px) {
