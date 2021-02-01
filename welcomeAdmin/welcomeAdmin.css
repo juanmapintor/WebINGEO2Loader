@@ -97,6 +97,49 @@ table, th, td {
 .delTd {
     width: 10%;
 }
+
+td > button {
+    background-color: red !important;
+}
+
+.Msg {
+    display: flex;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 0;
+    height: 0;
+    transition: all ease-in-out 0.3s;
+}
+
+.successMsg { 
+    background-color: lightgreen;
+}
+
+.errorMsg {
+    background-color: rgb(221, 57, 57);
+}
+
+.Msg > h1 {
+    display: none;
+    font-size: 25pt;
+    color: white;
+}
+
+.Msg.show {
+    width: 30%;
+    height: 20%;
+}
+
+.Msg.show > h1 {
+    display: inline;
+}
+
+
+
 @media (min-width: 768px) {
     .tabContent {
         width: 50%;

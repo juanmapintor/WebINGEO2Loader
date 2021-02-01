@@ -80,3 +80,34 @@ const logOut = () => {
         if(location.href != 'http://localhost/WebINGEO2Loader/') location.replace('http://localhost/WebINGEO2Loader/');
     });
 };
+
+/* 
+
+Muestra el mensaje enviado por parametro en cualquiera de las paginas. 
+CUIDADO: TODAVIA NO FUNCIONA EN TODAS LAS PAGINAS. 
+ES NECESARIO IMPORTAR EL CSS DE LAS CLASES SUCCESS, SHOW, ERROR.
+POR EL MOMENTO SOLO FUNCIONA EN WELCOMEADMIN.
+
+*/
+
+const showMsg = (response, msg) =>{
+    if(response.success){
+        let successMsg = document.querySelector('.successMsg');
+        successMsg.classList.add('show');
+        let successMsgHolder = document.getElementById('successMsgHolder');
+        successMsgHolder.innerHTML = msg;
+        setTimeout(() => {
+            successMsg.classList.remove('show');
+            successMsgHolder.innerHTML = '';
+        }, 1500);
+    } else {
+        let successMsg = document.querySelector('.errorMsg');
+        successMsg.classList.add('show');
+        let successMsgHolder = document.getElementById('errorMsgHolder');
+        successMsgHolder.innerHTML = "Error: " + response.error;
+        setTimeout(() => {
+            successMsg.classList.remove('show');
+            successMsgHolder.innerHTML = '';
+        }, 1500);
+    }
+};

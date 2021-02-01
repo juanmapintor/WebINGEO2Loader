@@ -32,41 +32,23 @@ const configureTabs = () =>{
     }
 }; 
 
-const add_sector = () => {
-    let sector_category = document.getElementById('sector_category');
-    let sector_name = document.getElementById('sector_name');
-
-    if(!sector_category.value) {
-        sector_category.setAttribute('style', 'border: 2px solid red;');
-    }
-
-    if(!sector_name.value) {
-        sector_name.setAttribute('style', 'border: 2px solid red;');
-    }
-
-    if(sector_category.value && sector_name.value){
-        let params = {
-            sector_category: sector_category.value,
-            sector_name: sector_name.value
-        }; 
-        
-        httpRequestPromise(general_url + 'add_sector.php', params, 'POST', 'json').then((response) => {
-            console.table(response);
-        });
-    }
-
-};
-
 const configureButtons = () => {
+    let exitButton = document.getElementById('exitButton');
     let addSectorBtn = document.getElementById('addSectorBtn');
     let addUserBtn = document.getElementById('addUserBtn');
 
     addSectorBtn.onclick = add_sector;
+    exitButton.onclick = logOut;
+
 };
+
+
+
 window.onload = () => {
     checkLog();
     configureTabs();
     configureButtons();
+    loadSector();
 };
 
 

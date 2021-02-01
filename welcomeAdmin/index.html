@@ -22,7 +22,7 @@
             <h4>Mi Perfil</h4>
         </div>
         <div class="pertab selected">
-            <button>Salir</button>
+            <button id="exitButton">Salir</button>
         </div>
     </div>
 
@@ -40,18 +40,7 @@
         <input type="text" id="sector_name" placeholder="Sector...">
         <button id="addSectorBtn">AGREGAR</button>
         <h1>Eliminar sector.</h1>
-        <table>
-            <tr>
-                <th>Categoria</th>
-                <th>Sector</th>
-                <th>Eliminar</th>
-            </tr>
-            <tr>
-                <td>cat</td>
-                <td>secttttttt</td>
-                <td class="delTd"><button style="background-color: red;">X</button></td>
-            </tr>
-
+        <table id="sectorsTable">
         </table>
     </div>
 
@@ -61,6 +50,14 @@
 
     <div class="tabContent">
         <h1>Mi Perfil.</h1>
+    </div>
+
+    <div class="Msg successMsg">
+        <h1 id="successMsgHolder"></h1>
+    </div>
+
+    <div class="Msg errorMsg">
+        <h1 id="errorMsgHolder"></h1>
     </div>
 
 
@@ -79,6 +76,7 @@
 
 
     <script src="http://localhost/WebINGEO2Loader/scripts/functions.js"></script>
-    <script src="welcomeAdmin.js"></script>
+    <script src="scripts/sectorsBehaviour.js"></script>
+    <script src="scripts/welcomeAdmin.js"></script>
 </body>
 </html>
