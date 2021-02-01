@@ -1,6 +1,5 @@
 <?php
 if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"]) && isset($_POST["usr_password"]) && !empty($_POST["usr_password"]) && isset($_POST["is_admin"])){
-    session_start();
     $usr_name = $_POST["usr_name"];
     $usr_password = $_POST["usr_password"];
     $is_admin = $_POST["is_admin"];
@@ -14,6 +13,7 @@ if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"]) && isset($_POST["usr_
             $stmt->bind_result($idUser, $fetched_password, $fetched_is_admin, $first_name);
             $stmt->fetch();
             if($usr_password == $fetched_password){
+                session_start();
                 $_SESSION["logged_in"] = true;
                 $_SESSION["id_user"] = $idUser;
                 $_SESSION["is_admin"] = $is_admin;

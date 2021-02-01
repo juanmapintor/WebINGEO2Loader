@@ -6,7 +6,6 @@
         Devuelve, en caso satisfactorio, un objeto JSON con claves "salt" y "is_admin",
         y en caso de error, un objeto JSON con clave "error" que contiene un codigo de error. 
     */
-    
     if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"])){
         $mysqli = @new mysqli("localhost", "WebINGEOLookup", "WebINGEOLookup", "INGEO");
         if(!$mysqli->connect_errno){
