@@ -20,7 +20,7 @@ if(isset($_POST["sector_id"]) && isset($_SESSION["logged_in"]) && isset($_SESSIO
                 $stmt->close();
             } else {
                 $response = [
-                    "error" => "E3"
+                    "error" => "Sentencia DB fallida."
                 ];
                 header("Content-Type: application/json");
                 echo json_encode($response);
@@ -28,14 +28,14 @@ if(isset($_POST["sector_id"]) && isset($_SESSION["logged_in"]) && isset($_SESSIO
             $mysqli->close();
         } else {
             $response = [
-                "error" => "E2"
+                "error" => "DB no conectada."
             ];
             header("Content-Type: application/json");
             echo json_encode($response);
         }
 } else {
     $response = [
-        "error" => "E1"
+        "error" => "Falló la autenticación."
     ];
     header("Content-Type: application/json");
     echo json_encode($response);

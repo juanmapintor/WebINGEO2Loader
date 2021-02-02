@@ -19,14 +19,14 @@ if(isset($_SESSION["logged_in"]) && isset($_SESSION["is_admin"])){
         }        
         } else {
             $response = [
-                "error" => "E2"
+                "error" => "Querry falló."
             ];
             header("Content-Type: application/json");
             echo json_encode($response);
         }
     } else {
         $response = [
-            "error" => "E1"
+            "error" => "Fallo de autenticación."
         ];
         header("Content-Type: application/json");
         echo json_encode($response);

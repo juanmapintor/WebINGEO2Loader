@@ -25,7 +25,7 @@ if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"]) && isset($_POST["usr_
                 echo json_encode($result);
             } else {
                 $result = [
-                    "success" => false
+                    "error" => "Contraseña incorrecta."
                 ];
                 header("Content-Type: application/json");
                 echo json_encode($result);
@@ -35,14 +35,14 @@ if(isset($_POST["usr_name"]) && !empty($_POST["usr_name"]) && isset($_POST["usr_
         $mysqli->close();
     } else {
         $result = [
-            "error" => "E1"
+            "error" => "DB no conectada."
         ];
         header('Content-Type: application/json');
         echo json_encode($result);
     }
 } else {
     $result = [
-        "error" => "E2"
+        "error" => "Falló la autenticación."
     ];
     header('Content-Type: application/json');
     echo json_encode($result);

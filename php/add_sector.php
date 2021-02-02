@@ -22,7 +22,7 @@
                 $stmt->close();
             } else {
                 $response = [
-                    "error" => "E3"
+                    "error" => "Sentencia DB fallida."
                 ];
                 header("Content-Type: application/json");
                 echo json_encode($response);
@@ -30,14 +30,14 @@
             $mysqli->close();
         } else {
             $response = [
-                "error" => "E2"
+                "error" => "Error conexión DB."
             ];
             header("Content-Type: application/json");
             echo json_encode($response);
         }
     } else {
         $response = [
-            "error" => "E1"
+            "error" => "Fallo de autenticación."
         ];
         header("Content-Type: application/json");
         echo json_encode($response);

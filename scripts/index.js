@@ -14,23 +14,14 @@ const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
             console.table(response);
             if(response.success){
                 if(response.first_time){
-                    window.location.href = "firstTime";
+                    window.location.href = 'firstTime';
                 } else if(is_admin) {
-                    window.location.href = "welcomeAdmin";
+                    window.location.href = 'welcomeAdmin';
                 } else {
-                    window.location.href = "welcomeUser";
-                }
-            } else {
-                responseMsg.setAttribute('style', 'color: red;');
-                if(response.error){
-                    switch(response.error){
-                        case 'E1': responseMsg.innerHTML = 'No se pudo conectar a la base de datos. Comuniquese con un administrador.'; break;
-                        case 'E2': responseMsg.innerHTML = 'El formulario esta mal formateado. Comuniquese con un administrador.'; break;
-                    }
-                } else {
-                    responseMsg.innerHTML = 'Contraseña ingresada incorrecta.';
+                    window.location.href = 'welcomeUser';
                 }
             }
+            showMsg(response, 'Sesion iniciada.')
         });
     });
 };
@@ -49,15 +40,8 @@ const login = () => {
     } else {
         httpRequestPromise(general_url + 'db_check_salt.php', { usr_name: usrInput.value}, 'POST', 'json').then((response) =>{
             if(response.error){
-                responseMsg.setAttribute('style', 'color: red;')
-                switch(response.error) {
-                    case 'E1': responseMsg.innerHTML = 'Usuario inexistente.'; break;
-                    case 'E2': responseMsg.innerHTML = 'No se pudo conectar a la DB. Contactese con un administrador.'; break;
-                    case 'E3': responseMsg.innerHTML = 'No se ingreso el usuario o contraseña.'; break;
-                }
+                showMsg(response, '');
             } else {
-                responseMsg.setAttribute('style', 'color: green;')
-                responseMsg.innerHTML = 'Iniciando sesion...';
                 loginWithSalt(usrInput.value, passInput.value, response.salt, response.is_admin, responseMsg);
             }
         }).catch((error) => {

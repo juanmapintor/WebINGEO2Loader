@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300&display=swap');
+@import '../styles/msg.css';
 
 html, body {
     display: none;
@@ -101,44 +102,6 @@ table, th, td {
 td > button {
     background-color: red !important;
 }
-
-.Msg {
-    display: flex;
-    position: absolute;
-    align-self: center;
-    justify-self: center;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
-    width: 0;
-    height: 0;
-    transition: all ease-in-out 0.3s;
-}
-
-.successMsg { 
-    background-color: lightgreen;
-}
-
-.errorMsg {
-    background-color: rgb(221, 57, 57);
-}
-
-.Msg > h1 {
-    display: none;
-    font-size: 25pt;
-    color: white;
-}
-
-.Msg.show {
-    width: 30%;
-    height: 20%;
-}
-
-.Msg.show > h1 {
-    display: inline;
-}
-
-
 
 @media (min-width: 768px) {
     .tabContent {

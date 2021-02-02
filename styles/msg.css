@@ -1,0 +1,37 @@
+.Msg {
+    display: flex;
+    position: absolute;
+    border: none;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: 0;
+    height: 0;
+    transition: all ease-in-out 0.3s;
+}
+
+.successMsg { 
+    background-color: lightgreen;
+}
+
+.errorMsg {
+    background-color: rgb(221, 18, 18);
+}
+
+.Msg > h1 {
+    display: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25pt;
+    color: white;
+}
+
+.Msg.show {
+    width: 30%;
+    height: 20%;
+}
+
+.Msg.show > h1 {
+    display: flex;
+}

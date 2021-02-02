@@ -14,6 +14,8 @@ let general_url = 'http://localhost/WebINGEO2Loader/php/';
     MIME Header para la request, por defecto, formulario codificado para URL.
 
     Por el momento, funciona bien con metodos GET y POST. No ha sido probado con otros metodos.
+
+    PARA HACER: reemplazar parametros conn objeto JSON de configuración.
 */
 const httpRequestPromise = (url, params = null, method = 'POST', responseType="", headers = [ { header: 'Content-type', headerValue: 'application/x-www-form-urlencoded'} ]) => {
     return new Promise((resolve, reject) => {
@@ -84,9 +86,6 @@ const logOut = () => {
 /* 
 
 Muestra el mensaje enviado por parametro en cualquiera de las paginas. 
-CUIDADO: TODAVIA NO FUNCIONA EN TODAS LAS PAGINAS. 
-ES NECESARIO IMPORTAR EL CSS DE LAS CLASES SUCCESS, SHOW, ERROR.
-POR EL MOMENTO SOLO FUNCIONA EN WELCOMEADMIN.
 
 */
 
@@ -110,4 +109,20 @@ const showMsg = (response, msg) =>{
             successMsgHolder.innerHTML = '';
         }, 1500);
     }
+};
+
+/*
+    Checkea que el usuario dado este loggeado, y, en caso de indicarlo, que sea administrador.
+*/
+
+const checkLog = (isAdmin) => {
+    httpRequestPromise('http://localhost/WebINGEO2Loader/php/login_state.php', null, 'POST', 'json').then((response) => {
+        if(!response.success || response.is_admin != isAdmin) {
+            alert("No ha iniciado sesion o su sesion ha caducado.");
+            logOut();
+        } else {
+            document.querySelector('html').setAttribute('style', 'display: flex;');
+            document.querySelector('body').setAttribute('style', 'display: flex;');
+        }
+    });
 };
