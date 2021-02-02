@@ -1,3 +1,4 @@
+/* CUIDADO. CAMBIAR LOCALHOST POR URL */
 let general_url = 'http://localhost/WebINGEO2Loader/php/';
 
 /*
