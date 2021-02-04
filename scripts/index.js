@@ -15,7 +15,7 @@ const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
             if(response.success){
                 setTimeout(() => {
                     if(response.first_time){
-                        window.location.href = 'firstTime';
+                        window.location.href = 'welcome/welcomeFirstTime';
                     } else if(is_admin) {
                         window.location.href = 'welcome/welcomeAdmin';
                     } else {

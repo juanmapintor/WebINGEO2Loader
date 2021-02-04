@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://localhost/WebINGEO2Loader/welcome/styles/welcome.css">
+    <title>Primer inicio.</title>
+</head>
+<body>
+    <div class="tabs">
+        <div class="tab selected">
+            <h4>Bienvenido</h4>
+        </div>
+        <div class="pertab selected" style="max-width: 15%;">
+            <button id="exitButton">Salir</button>
+        </div>
+    </div>
+    <div class="tabContent selected">
+        <h1>Nuevo usuario.</h1>
+        <p>
+            Usted ha sido asignado un nuevo usuario en la página web del INGEO, 
+            el cual le permitirá subir contenidos como artículos, artículos destacados,
+            y en caso de ser administrador, tambien podrá agregar nuevos usuarios 
+            y secciones a la pagina.
+            <br>
+            <br>
+            Para poder comenzar a utilizar su nuevo usuario, debe actualizar su información,
+            ya que tanto su usuario como su contraseña fueron generados automaticamente por 
+            el sistema y no son seguros.
+            <br>
+            <br>
+            Al terminar de actualizar sus credenciales, por favor, presione "Aceptar".
+        </p>
+        <div class="inputDiv">
+            <input type="text" id="first_name" placeholder="Nombre">
+            <input type="text" id="last_name" placeholder="Apellido">
+        </div>
+        <div class="inputDiv">
+            <input type="text" id="user_name" placeholder="Usuario">
+        </div>
+    
+        <div class="inputDiv">
+            <input type="text" id="password" placeholder="Contraseña">
+            <input type="text" id="repeat_password" placeholder="Repetir Contraseña">
+        </div>
+
+        <div class="inputDiv">
+            <input type="text" id="degree" placeholder="Título">
+        </div>
+        <div class="inputDiv">
+            <input type="tel" id="phone" placeholder="Teléfono">
+            <input type="url" id="weblink" placeholder="Página Web">
+        </div>
+    </div>
+
+    <script src="http://localhost/WebINGEO2Loader/scripts/functions.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/welcome.js"></script>
+    <script src="scripts/welcomeFirstTime.js"></script>
+</body>
+</html>

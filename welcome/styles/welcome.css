@@ -54,8 +54,9 @@ html, body {
 }
 input {
     font-size: large;
-    margin: 16px;
+    margin: 16px 0;
     width: 100%;
+    max-width: 100%;
 }
 
 input[type='checkbox'] {
@@ -101,6 +102,19 @@ table, th, td {
 td > button {
     background-color: red !important;
 }
+
+p {
+    text-align: justify;
+}
+
+.inputDiv {
+    display: flex; 
+    flex-direction: row; 
+    margin: 0; 
+    padding: 0; 
+    width: 100%;
+}
+
 
 @media (min-width: 768px) {
     .tabContent {

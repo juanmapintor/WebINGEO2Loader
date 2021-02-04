@@ -6,7 +6,8 @@
     if(isset($_SESSION["logged_in"])){
         $result = [
             "success" => true,
-            "is_admin" => $_SESSION["is_admin"]
+            "is_admin" => $_SESSION["is_admin"],
+            "first_time" => $_SESSION["first_time"]
         ];
     } else {
         $result = [
