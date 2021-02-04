@@ -90,40 +90,41 @@ Muestra el mensaje enviado por parametro en cualquiera de las paginas.
 
 */
 
-const showMsg = (response, msg) =>{
-    if(response.success){
+const showMsg = (error, msg, timeout = 1500) =>{
+    let msgs = document.querySelectorAll('.Msg');
+    msgs.forEach(msg =>{
+        msg.classList.remove('show');
+    });
+
+    if(!error){
         let successMsg = document.querySelector('.successMsg');
         successMsg.classList.add('show');
         let successMsgHolder = document.getElementById('successMsgHolder');
         successMsgHolder.innerHTML = msg;
-        setTimeout(() => {
-            successMsg.classList.remove('show');
-            successMsgHolder.innerHTML = '';
-        }, 1500);
+        if(timeout != 0){
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+                successMsgHolder.innerHTML = '';
+            }, timeout);
+        }
     } else {
-        let successMsg = document.querySelector('.errorMsg');
-        successMsg.classList.add('show');
-        let successMsgHolder = document.getElementById('errorMsgHolder');
-        successMsgHolder.innerHTML = "Error: " + response.error;
-        setTimeout(() => {
-            successMsg.classList.remove('show');
-            successMsgHolder.innerHTML = '';
-        }, 1500);
+        let errorMsg = document.querySelector('.errorMsg');
+        errorMsg.classList.add('show');
+        let errorMsgHolder = document.getElementById('errorMsgHolder');
+        errorMsgHolder.innerHTML = msg;
+        if(timeout!=0){
+            setTimeout(() => {
+                errorMsg.classList.remove('show');
+                errorMsgHolder.innerHTML = '';
+            }, timeout); 
+        }
     }
 };
 
-/*
-    Checkea que el usuario dado este loggeado, y, en caso de indicarlo, que sea administrador.
-*/
-
-const checkLog = (isAdmin) => {
-    httpRequestPromise('http://localhost/WebINGEO2Loader/php/login_state.php', null, 'POST', 'json').then((response) => {
-        if(!response.success || response.is_admin != isAdmin) {
-            alert("No ha iniciado sesion o su sesion ha caducado.");
-            logOut();
-        } else {
-            document.querySelector('html').setAttribute('style', 'display: flex;');
-            document.querySelector('body').setAttribute('style', 'display: flex;');
-        }
+const hideMsg = () => {
+    let msgs = document.querySelectorAll('.Msg');
+    msgs.forEach(msg =>{
+        msg.classList.remove('show');
     });
 };
+

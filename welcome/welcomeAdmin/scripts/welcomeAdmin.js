@@ -39,6 +39,7 @@ const configureButtons = () => {
     let addUserBtn = document.getElementById('addUserBtn');
 
     addSectorBtn.onclick = add_sector;
+    addUserBtn.onclick = add_user;
     exitButton.onclick = logOut;
 
 };
@@ -50,6 +51,7 @@ window.onload = () => {
     configureTabs();
     configureButtons();
     loadSector();
+    loadUsers();
     onChange();
 };
 

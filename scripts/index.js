@@ -11,7 +11,7 @@ const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
         };
         
         httpRequestPromise(general_url + 'db_login.php', params, 'POST', 'json').then((response) => {
-            showMsg(response, 'Sesion iniciada.')
+            showMsg(false, 'Sesion iniciada.')
             if(response.success){
                 setTimeout(() => {
                     if(response.first_time){
@@ -41,13 +41,15 @@ const login = () => {
     } else {
         httpRequestPromise(general_url + 'db_check_salt.php', { usr_name: usrInput.value}, 'POST', 'json').then((response) =>{
             if(response.error){
-                showMsg(response, '');
+                showMsg(true, response.error);
             } else {
                 loginWithSalt(usrInput.value, passInput.value, response.salt, response.is_admin, responseMsg);
             }
         }).catch((error) => {
             console.error(error);
         });
+
+        showMsg(false, 'Iniciando Sesion...', 0);
     }
 };
 

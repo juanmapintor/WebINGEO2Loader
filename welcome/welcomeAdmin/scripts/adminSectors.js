@@ -17,9 +17,15 @@ const add_sector = () => {
         }; 
         
         httpRequestPromise(general_url + 'add_sector.php', params, 'POST', 'json').then((response) => {
-            showMsg(response, 'Añadido!');
+            if(response.error){
+                showMsg(true, response.error);
+            } else {
+                showMsg(false, 'Añadido!');
+            }
             loadSector();
         });
+
+        showMsg(false, 'Anadiendo...', 0);
     }
 
 };
@@ -55,7 +61,12 @@ const delSector = (id) => {
         sector_id: id
     };
     httpRequestPromise(general_url + 'del_sector.php', params, 'POST', 'json').then(response => {
-        showMsg(response, 'Eliminado!');
+        if(response.error){
+            showMsg(true, response.error);
+        } else {
+            showMsg(false, 'Eliminado!');
+        }
         loadSector();
     });
+    showMsg(false, 'Eliminando...', 0);
 };
