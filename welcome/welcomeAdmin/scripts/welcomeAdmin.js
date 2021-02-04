@@ -18,7 +18,20 @@ const configureTabs = () =>{
             selectTab(tabs, i);
         };
     }
-}; 
+};
+
+const onChange = () => {
+    let sector_category = document.getElementById('sector_category');
+    let sector_name = document.getElementById('sector_name');
+
+    sector_category.onchange = () => {
+        sector_category.removeAttribute('style');
+    }
+
+    sector_name.onchange = () => {
+        sector_name.removeAttribute('style');
+    }
+};
 
 const configureButtons = () => {
     let exitButton = document.getElementById('exitButton');
@@ -37,6 +50,7 @@ window.onload = () => {
     configureTabs();
     configureButtons();
     loadSector();
+    onChange();
 };
 
 
