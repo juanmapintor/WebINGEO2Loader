@@ -115,6 +115,12 @@ p {
     width: 100%;
 }
 
+textarea {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12pt;
+    width: 100%;
+}
+
 
 @media (min-width: 768px) {
     .tabContent {

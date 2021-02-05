@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://localhost/WebINGEO2Loader/welcome/styles/welcome.css">
+    <link rel="stylesheet" href="http://localhost/WebINGEO2Loader/styles/croppie.css">
     <title>Primer inicio.</title>
 </head>
 <body>
@@ -32,6 +33,11 @@
             Al terminar de actualizar sus credenciales, por favor, presione "Aceptar".
         </p>
         <div class="inputDiv">
+            <input type="file" id="user_picture">
+            <button style="max-width: 10%;">Subir</button>
+        </div>
+        
+        <div class="inputDiv">
             <input type="text" id="first_name" placeholder="Nombre">
             <input type="text" id="last_name" placeholder="Apellido">
         </div>
@@ -48,11 +54,16 @@
             <input type="text" id="degree" placeholder="Título">
         </div>
         <div class="inputDiv">
+            <textarea id="short_description" cols="30" rows="10" maxlength="255" placeholder="Descripción corta del usuario."></textarea>
+        </div>
+        <div class="inputDiv">
             <input type="tel" id="phone" placeholder="Teléfono">
             <input type="url" id="weblink" placeholder="Página Web">
         </div>
+        <button>Aceptar</button>
     </div>
 
+    <script src="http://localhost/WebINGEO2Loader/scripts/croppie.js"></script>
     <script src="http://localhost/WebINGEO2Loader/scripts/functions.js"></script>
     <script src="http://localhost/WebINGEO2Loader/welcome/scripts/welcome.js"></script>
     <script src="scripts/welcomeFirstTime.js"></script>
