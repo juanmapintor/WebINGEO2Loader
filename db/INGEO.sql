@@ -24,14 +24,14 @@ DROP TABLE IF EXISTS `articles`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `articles` (
   `idArticles` int NOT NULL AUTO_INCREMENT,
-  `title` tinytext COLLATE utf8_spanish_ci NOT NULL,
-  `short_description` tinytext COLLATE utf8_spanish_ci NOT NULL,
-  `html_content` longtext COLLATE utf8_spanish_ci NOT NULL,
-  `img_path` tinytext COLLATE utf8_spanish_ci,
+  `title` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `short_description` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `html_content` longtext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `img_path` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci,
   `in_carousel` tinyint(1) NOT NULL DEFAULT '0',
   `in_news` tinyint(1) NOT NULL DEFAULT '0',
   `in_highlight` tinyint(1) NOT NULL DEFAULT '0',
-  `keywords` text COLLATE utf8_spanish_ci,
+  `keywords` text CHARACTER SET utf8 COLLATE utf8_spanish_ci,
   `publish_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `userId` int NOT NULL,
   `sectorId` int NOT NULL,
@@ -61,10 +61,10 @@ DROP TABLE IF EXISTS `sectors`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sectors` (
   `idSectors` int NOT NULL AUTO_INCREMENT,
-  `category` tinytext COLLATE utf8_spanish_ci NOT NULL,
-  `name` tinytext COLLATE utf8_spanish_ci NOT NULL,
+  `sector_category` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `sector_name` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`idSectors`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,22 +85,23 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `idUsers` int NOT NULL AUTO_INCREMENT,
-  `usr_name` varchar(64) COLLATE utf8_spanish_ci NOT NULL,
+  `usr_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `usr_password` char(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
   `usr_password_salt` char(8) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
-  `email` tinytext COLLATE utf8_spanish_ci NOT NULL,
-  `first_name` tinytext COLLATE utf8_spanish_ci NOT NULL,
-  `last_name` tinytext COLLATE utf8_spanish_ci NOT NULL,
+  `email` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `first_name` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `last_name` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `is_admin` tinyint(1) NOT NULL,
-  `degree` tinytext COLLATE utf8_spanish_ci,
-  `profile_img` tinytext COLLATE utf8_spanish_ci,
-  `short_ description` tinytext COLLATE utf8_spanish_ci,
-  `phone_number` tinytext COLLATE utf8_spanish_ci,
-  `web_link` tinytext COLLATE utf8_spanish_ci,
+  `degree` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci,
+  `profile_img` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci,
+  `short_ description` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci,
+  `phone_number` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci,
+  `web_link` tinytext CHARACTER SET utf8 COLLATE utf8_spanish_ci,
+  `first_time` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`idUsers`),
   UNIQUE KEY `usr_name_UNIQUE` (`usr_name`),
   UNIQUE KEY `usr_password_salt_UNIQUE` (`usr_password_salt`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +110,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','12684dff28c6cf97e2067243bacbea07e1a2df777fbaedba0d6a5b448f188e57','fayv5xr5','juanmapintor@unsj-cuim.edu.ar','Juan Manuel','Pintor Ejarque',1,NULL,NULL,NULL,NULL,NULL),(2,'user','846ec57e1d6d3999798bfddb39de19c08e6a74ec17705d88b7314dd4a7694e48','abcdefgh','mail@mail.mail','Nombre','Apellido',0,NULL,NULL,NULL,NULL,NULL),(4,'popo','1d856c074be43c67a4ff462a7e12802a7e7c174c9549a16bc62b8fb37588abda','12345678','mail@mail.com','PRIMERO','Apellido',0,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'admin','12684dff28c6cf97e2067243bacbea07e1a2df777fbaedba0d6a5b448f188e57','fayv5xr5','juanmapintor@unsj-cuim.edu.ar','Juan Manuel','Pintor Ejarque',1,NULL,NULL,NULL,NULL,NULL,0),(2,'user','846ec57e1d6d3999798bfddb39de19c08e6a74ec17705d88b7314dd4a7694e48','abcdefgh','mail@mail.mail','Nombre','Apellido',0,NULL,NULL,NULL,NULL,NULL,0),(25,'U8HJzATO','b15a9452fa040d5bcd6527f7ffed89cca4bea4987ce95721019e47b4192c6cc0','8m5q3lpd','juanmapintor22@gmail.com','Nombre','Apellido',1,NULL,NULL,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,4 +149,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-24 17:06:53
+-- Dump completed on 2021-02-04 22:32:30
