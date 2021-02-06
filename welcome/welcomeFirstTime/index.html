@@ -33,10 +33,18 @@
             Al terminar de actualizar sus credenciales, por favor, presione "Aceptar".
         </p>
         <div class="inputDiv">
-            <input type="file" id="user_picture">
-            <button style="max-width: 10%;">Subir</button>
+            <input type="file" id="imageFile" accept="image/*">
         </div>
-        
+        <div class="croppieDiv" id="croppieDiv">
+            <img src="" id="croppieImage">
+        </div>
+        <div class="acceptDiv" id="acceptDiv">
+            <button id="acceptCroppieButton">Aceptar</button>
+        </div>
+
+        <div class="inputDiv" id="resultDiv">
+            <img src="" id="resultImage">
+        </div>
         <div class="inputDiv">
             <input type="text" id="first_name" placeholder="Nombre">
             <input type="text" id="last_name" placeholder="Apellido">
@@ -60,7 +68,7 @@
             <input type="tel" id="phone" placeholder="Teléfono">
             <input type="url" id="weblink" placeholder="Página Web">
         </div>
-        <button>Aceptar</button>
+        <button id="acceptButton">Aceptar</button>
     </div>
 
     <script src="http://localhost/WebINGEO2Loader/scripts/croppie.js"></script>
