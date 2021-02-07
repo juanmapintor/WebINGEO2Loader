@@ -50,7 +50,7 @@ window.onload = () => {
     checkLog(true);
     configureTabs();
     configureButtons();
-    loadSector();
+    loadSector('delete', delSector);
     loadUsers();
     onChange();
 };

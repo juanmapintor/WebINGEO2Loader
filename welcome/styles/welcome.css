@@ -131,6 +131,22 @@ textarea {
     width: 100%;
 }
 
+.redBorder {
+    border: 2px red solid;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.passwordAlert {
+    display: none;
+    font-size: 10pt;
+    color: red;
+}
+
 @media (min-width: 768px) {
     .tabContent {
         width: 50%;

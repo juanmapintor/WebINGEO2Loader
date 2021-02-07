@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+
+
 if(isset($_POST["user_id"]) && isset($_SESSION["logged_in"]) && isset($_SESSION["is_admin"])){
     $user_id = $_POST["user_id"];
     $mysqli = @new mysqli("localhost", "WebINGEOAdmin", "WebINGEOAdmin", "INGEO");
@@ -8,6 +11,17 @@ if(isset($_POST["user_id"]) && isset($_SESSION["logged_in"]) && isset($_SESSION[
             if($stmt = $mysqli -> prepare("DELETE FROM users WHERE idUsers=?")) {
                 $bind = $stmt->bind_param("i", $user_id);
                 $exec = $stmt->execute();
+                
+                $dir = "../res/".$user_id;
+
+                $files = glob($dir.'/*');
+                foreach($files as $file){
+                    if(is_file($file)) {
+                        unlink($file);
+                    }
+                }
+
+                rmdir($dir);
 
                 $response = [
                     "success" => true,

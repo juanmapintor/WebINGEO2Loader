@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION["logged_in"]) && isset($_SESSION["is_admin"])){
-    $mysqli = @new mysqli("localhost", "WebINGEOAdmin", "WebINGEOAdmin", "INGEO");
+if(isset($_SESSION["logged_in"])){
+    $mysqli = @new mysqli("localhost", "WebINGEOLookup", "WebINGEOLookup", "INGEO");
 
     if(!$mysqli->connect_errno){
         if ($mysqli->multi_query("SELECT * FROM sectors")) {

@@ -22,7 +22,7 @@ const add_sector = () => {
             } else {
                 showMsg(false, 'Añadido!');
             }
-            loadSector();
+            loadSector('delete', delSector);
         });
 
         showMsg(false, 'Anadiendo...', 0);
@@ -30,31 +30,7 @@ const add_sector = () => {
 
 };
 
-const loadSector = () => {
-    let sectorsTable = document.getElementById('sectorsTable');
-    sectorsTable.innerHTML = '';
-    let newRow = sectorsTable.insertRow(0);
-    newRow.insertCell().innerHTML = 'Categoria';
-    newRow.insertCell().innerHTML = 'Sector';
-    newRow.insertCell().innerHTML = 'Eliminar';
-    httpRequestPromise(general_url + 'sector_load.php', null, 'POST', 'json').then((response) => {
-        response.forEach(element => addTableRow(element));
-    });
-};
 
-const addTableRow = (row) => {
-    let sectorsTable = document.getElementById('sectorsTable');
-    let newRow = sectorsTable.insertRow();
-    newRow.insertCell().innerHTML = row[1];
-    newRow.insertCell().innerHTML = row[2];
-    let newBtnCell = newRow.insertCell();
-    let newBtn = document.createElement('button');
-    newBtnCell.classList.add('delTd');
-    newBtn.innerHTML = 'X';
-    newBtn.addEventListener('click', () => delSector(row[0]));
-    newBtnCell.appendChild(newBtn);
-
-};
 
 const delSector = (id) => {
     let params = {
@@ -66,7 +42,7 @@ const delSector = (id) => {
         } else {
             showMsg(false, 'Eliminado!');
         }
-        loadSector();
+        loadSector('delete', delSector);
     });
     showMsg(false, 'Eliminando...', 0);
 };

@@ -16,7 +16,7 @@
             <button id="exitButton">Salir</button>
         </div>
     </div>
-    <div class="tabContent selected">
+    <div class="tabContent selected" id="main">
         <h1>Nuevo usuario.</h1>
         <p>
             Usted ha sido asignado un nuevo usuario en la página web del INGEO, 
@@ -49,14 +49,20 @@
             <input type="text" id="first_name" placeholder="Nombre">
             <input type="text" id="last_name" placeholder="Apellido">
         </div>
-        <div class="inputDiv">
-            <input type="text" id="user_name" placeholder="Usuario">
-        </div>
-    
-        <div class="inputDiv">
-            <input type="text" id="password" placeholder="Contraseña">
-            <input type="text" id="repeat_password" placeholder="Repetir Contraseña">
-        </div>
+        <form>
+            <div class="inputDiv">
+                <input type="text" id="user_name" autocomplete="username" pattern="/^\S*$/" placeholder="Usuario">
+            </div>
+        
+            <div class="inputDiv">
+                <input type="password" id="password" autocomplete="new-password" placeholder="Contraseña">
+                <input type="password" id="repeat_password" autocomplete="new-password" placeholder="Repetir Contraseña">
+            </div>
+
+            <p id="passwordAlert" class="passwordAlert">
+                Recuerde que su contraseña debe tener 8 o mas caracteres de longitud, y deben coincidir. 
+            </p>
+        </form>
 
         <div class="inputDiv">
             <input type="text" id="degree" placeholder="Título">
@@ -68,7 +74,27 @@
             <input type="tel" id="phone" placeholder="Teléfono">
             <input type="url" id="weblink" placeholder="Página Web">
         </div>
-        <button id="acceptButton">Aceptar</button>
+
+        <div class="inputDiv">
+            <h3>Seleccione los sectores en los que trabaja.</h3>
+        </div>
+        <div class="inputDiv">
+            <table id="sectorsTable2">
+            </table>
+        </div>
+        
+        <div class="inputDiv" style="min-height: 150px;">
+            <button id="acceptButton">Aceptar</button>
+        </div>
+    </div>
+
+
+    <div class="Msg successMsg">
+        <h1 id="successMsgHolder"></h1>
+    </div>
+
+    <div class="Msg errorMsg">
+        <h1 id="errorMsgHolder"></h1>
     </div>
 
     <script src="http://localhost/WebINGEO2Loader/scripts/croppie.js"></script>

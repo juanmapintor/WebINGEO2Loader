@@ -90,7 +90,7 @@ Muestra el mensaje enviado por parametro en cualquiera de las paginas.
 
 */
 
-const showMsg = (error, msg, timeout = 1500) =>{
+const showMsg = (error, msg, timeout = 1500, action = () => {}) =>{
     let msgs = document.querySelectorAll('.Msg');
     msgs.forEach(msg =>{
         msg.classList.remove('show');
@@ -105,6 +105,7 @@ const showMsg = (error, msg, timeout = 1500) =>{
             setTimeout(() => {
                 successMsg.classList.remove('show');
                 successMsgHolder.innerHTML = '';
+                action();
             }, timeout);
         }
     } else {
@@ -116,6 +117,7 @@ const showMsg = (error, msg, timeout = 1500) =>{
             setTimeout(() => {
                 errorMsg.classList.remove('show');
                 errorMsgHolder.innerHTML = '';
+                action();
             }, timeout); 
         }
     }
