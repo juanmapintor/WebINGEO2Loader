@@ -9,7 +9,7 @@ let general_url = 'http://localhost/WebINGEO2Loader/php/';
     Cuenta con valores por defecto para:
     - params: null. No envia parametros adicionales.
     - method: POST. 
-    - responseType:  "". Respuesta tipo texto. En caso de elegir otro tipo de respuesta, es importante que 
+    - responseType:  json. Respuesta tipo texto. En caso de elegir otro tipo de respuesta, es importante que 
     el header este configurado en el script del servidor.
     - header/headerValue: Array de headers. Por defecto: "Content-type: application/x-www-form-urlencoded". 
     MIME Header para la request, por defecto, formulario codificado para URL.
@@ -18,7 +18,7 @@ let general_url = 'http://localhost/WebINGEO2Loader/php/';
 
     PARA HACER: reemplazar parametros conn objeto JSON de configuración.
 */
-const httpRequestPromise = (url, params = null, method = 'POST', responseType="", headers = [ { header: 'Content-type', headerValue: 'application/x-www-form-urlencoded'} ]) => {
+const httpRequestPromise = (url, params = null, method = 'POST', responseType='json', headers = [ { header: 'Content-type', headerValue: 'application/x-www-form-urlencoded'} ]) => {
     return new Promise((resolve, reject) => {
         let httpRequest = new XMLHttpRequest();
 

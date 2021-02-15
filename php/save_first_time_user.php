@@ -86,7 +86,7 @@
                             }
                         } else {
                             $response = [
-                                "error" => "No se pudo actualizar la información de su usuario."
+                                "error" => "No se pudo actualizar la información de su usuario.  <br><br> Intente con un nuevo nombre de usuario."
                             ];
                         }
                     } else {

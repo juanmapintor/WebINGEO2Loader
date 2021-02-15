@@ -91,6 +91,7 @@ const accept = () => {
             params.usr_password = ArrayBufferToString(hashedPass);
 
             httpRequestPromise(general_url + 'save_first_time_user.php', params, 'POST', 'json').then(response => {
+                console.log(response);
                 if(response){
                     if(response.success){
                         let main = document.getElementById('main');
@@ -101,10 +102,10 @@ const accept = () => {
                         showMsg(false, 'Exito!', 2500, logOut);
                     } else {
                         if(response.error) {
-                            showMsg(true, response.error);
+                            showMsg(true, response.error, 2500);
                         }
                     }
-                }
+                } 
             });
         }); 
 

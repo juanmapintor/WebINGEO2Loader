@@ -15,6 +15,8 @@ html, body {
     font-family: 'Open Sans', sans-serif;
     user-select: none;
 }
+
+
 .tabs {
     display: flex;
     width: 100%;
@@ -146,6 +148,23 @@ form {
     font-size: 10pt;
     color: red;
 }
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: flex;
+}
+
+.division {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 
 @media (min-width: 768px) {
     .tabContent {

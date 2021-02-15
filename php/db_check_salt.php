@@ -24,7 +24,7 @@
                     echo json_encode($result);
                 } else {
                     $result = [
-                        "error" => "Sentencia DB fallida."
+                        "error" => "Usuario inexistente."
                     ];
                     header('Content-Type: application/json');
                     echo json_encode($result);

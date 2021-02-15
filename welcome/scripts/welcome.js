@@ -57,8 +57,11 @@ const loadSector = (type, action, tableId = 'sectorsTable') => {
     let newRow = sectorsTable.insertRow(0);
     newRow.insertCell().innerHTML = 'Categoria';
     newRow.insertCell().innerHTML = 'Sector';
-    if(type == 'delete') newRow.insertCell().innerHTML = 'Eliminar';
-    if(type == 'select') newRow.insertCell().innerHTML = 'Seleccionar';
+    if(type) {
+        if(type == 'delete') newRow.insertCell().innerHTML = 'Eliminar';
+        if(type == 'select') newRow.insertCell().innerHTML = 'Seleccionar';
+    }
+
     httpRequestPromise(general_url + 'sector_load.php', null, 'POST', 'json').then((response) => {
         response.forEach(element => addTableRow(element, type, action, tableId));
     });
@@ -69,21 +72,23 @@ const addTableRow = (row, type, action, tableId) => {
     let newRow = sectorsTable.insertRow();
     newRow.insertCell().innerHTML = row[1];
     newRow.insertCell().innerHTML = row[2];
-    let newActionCell = newRow.insertCell();
-    let newAction;
-    if(type == 'delete') {
-        newAction = document.createElement('button');
-        newActionCell.classList.add('delTd');
-        newAction.innerHTML = 'X';
-        newAction.addEventListener('click', () => action(row[0]));
+
+    if(type) {
+        let newActionCell = newRow.insertCell();
+        let newAction;
+        if(type == 'delete') {
+            newAction = document.createElement('button');
+            newActionCell.classList.add('delTd');
+            newAction.innerHTML = 'X';
+            newAction.addEventListener('click', () => action(row[0]));
+        }
+
+        if(type == 'select') {
+            newAction = document.createElement('input');
+            newAction.setAttribute('type', 'checkbox');
+            newAction.addEventListener('click', () => action(row[0], newAction.checked));
+        }
+        newActionCell.appendChild(newAction);
     }
 
-    if(type == 'select') {
-        newAction = document.createElement('input');
-        newAction.setAttribute('type', 'checkbox');
-        newAction.addEventListener('click', () => action(row[0], newAction.checked));
-    }
-
-    
-    newActionCell.appendChild(newAction);
 };

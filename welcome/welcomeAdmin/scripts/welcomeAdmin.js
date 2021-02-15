@@ -52,6 +52,7 @@ window.onload = () => {
     configureButtons();
     loadSector('delete', delSector);
     loadUsers();
+    loadProfile();
     onChange();
 };
 
