@@ -97,7 +97,7 @@ const accept = () => {
                         let main = document.getElementById('main');
                         main.innerHTML = '';
                         let success = document.createElement('p');
-                        success.innerHTML = '<br> <br> <br> <br>Datos actualizados!  <br> <br> <br> <br> Inicie sesion nuevamente con sus nuevas credenciales'
+                        success.innerHTML = '<br> <br> Datos actualizados!  <br> <br>Inicie sesion nuevamente con sus nuevas credenciales'
                         main.appendChild(success);
                         showMsg(false, 'Exito!', 2500, logOut);
                     } else {

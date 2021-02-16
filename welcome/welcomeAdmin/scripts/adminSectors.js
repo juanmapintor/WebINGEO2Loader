@@ -30,8 +30,6 @@ const add_sector = () => {
 
 };
 
-
-
 const delSector = (id) => {
     let params = {
         sector_id: id

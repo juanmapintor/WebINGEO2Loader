@@ -11,18 +11,26 @@ const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
         };
         
         httpRequestPromise(general_url + 'db_login.php', params, 'POST', 'json').then((response) => {
-            showMsg(false, 'Sesion iniciada.')
-            if(response.success){
-                setTimeout(() => {
-                    if(response.first_time){
-                        window.location.href = 'welcome/welcomeFirstTime';
-                    } else if(is_admin) {
-                        window.location.href = 'welcome/welcomeAdmin';
-                    } else {
-                        window.location.href = 'welcome/welcomeUser';
+            
+            if(response){
+                if(response.success){
+                    showMsg(false, 'Sesion iniciada.')
+                    setTimeout(() => {
+                        if(response.first_time){
+                            window.location.href = 'welcome/welcomeFirstTime';
+                        } else if(is_admin) {
+                            window.location.href = 'welcome/welcomeAdmin';
+                        } else {
+                            window.location.href = 'welcome/welcomeUser';
+                        }
+                    }, 1500);
+                } else {
+                    if(response.error){
+                        showMsg(true, response.error);
                     }
-                }, 1500);
+                }
             }
+            
         });
     });
 };

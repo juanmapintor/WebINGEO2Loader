@@ -51,7 +51,7 @@ function hasWhiteSpace(s) {
     Cargan sectores en una tabla llamada 'sectorsTable'
 */
 
-const loadSector = (type, action, tableId = 'sectorsTable') => {
+const loadSector = (type, action, tableId = 'sectorsTable', selectedSectors = []) => {
     let sectorsTable = document.getElementById(tableId);
     sectorsTable.innerHTML = '';
     let newRow = sectorsTable.insertRow(0);
@@ -63,11 +63,11 @@ const loadSector = (type, action, tableId = 'sectorsTable') => {
     }
 
     httpRequestPromise(general_url + 'sector_load.php', null, 'POST', 'json').then((response) => {
-        response.forEach(element => addTableRow(element, type, action, tableId));
+        response.forEach(element => addTableRow(element, type, action, tableId, selectedSectors.includes(element[0])));
     });
 };
 
-const addTableRow = (row, type, action, tableId) => {
+const addTableRow = (row, type, action, tableId, selected = false) => {
     let sectorsTable = document.getElementById(tableId);
     let newRow = sectorsTable.insertRow();
     newRow.insertCell().innerHTML = row[1];
@@ -86,6 +86,10 @@ const addTableRow = (row, type, action, tableId) => {
         if(type == 'select') {
             newAction = document.createElement('input');
             newAction.setAttribute('type', 'checkbox');
+            newAction.checked = selected;
+            if(selected) {
+                action(row[0], selected);
+            }
             newAction.addEventListener('click', () => action(row[0], newAction.checked));
         }
         newActionCell.appendChild(newAction);

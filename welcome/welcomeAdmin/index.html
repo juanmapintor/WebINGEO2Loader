@@ -6,6 +6,7 @@
     <title>ADMINISTRADOR</title>
     <!-- /* CUIDADO, REEMPLAZAR URL */ -->
     <link rel="stylesheet" href="http://localhost/WebINGEO2Loader/welcome/styles/welcome.css">
+    <link rel="stylesheet" href="http://localhost/WebINGEO2Loader/styles/croppie.css">
 </head>
 <body>
 
@@ -112,11 +113,104 @@
         </div>
         <div class="hidden" id="modifyDiv">
             <h1>Modificando</h1>
-            <button id="acceptModifyBtn">Aceptar</button>
+
+            <table>
+                <tr>
+                    <td>Foto de perfil: </td>
+                    <td>
+                        <div class="inputDiv">
+                            <input type="file" id="imageFile" accept="image/*">
+                        </div>
+                        <div class="croppieDiv" id="croppieDiv">
+                            <img src="" id="croppieImage">
+                        </div>
+                        <div class="acceptDiv" id="acceptDiv">
+                            <button id="acceptCroppieButton">Aceptar</button>
+                        </div>
+                        <div class="inputDiv" id="resultDiv">
+                            <img src="" id="resultImage">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nombre: </td>
+                    <td>
+                        <input type="text" id="first_name_mod" placeholder="Nombre">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Apellido: </td>
+                    <td>
+                        <input type="text" id="last_name_mod" placeholder="Apellido">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Usuario: </td>
+                    <td>
+                        <input type="text" id="user_name_mod" placeholder="Usuario">
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-Mail: </td>
+                    <td>
+                        <input type="email" id="email_mod" placeholder="mail@mail.com">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Título: </td>
+                    <td>
+                        <input type="text" id="degree_mod" placeholder="Título">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descripción: </td>
+                    <td>
+                        <textarea id="short_description_mod" cols="30" rows="10" maxlength="255" placeholder="Descripción corta del usuario."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Teléfono: </td>
+                    <td>
+                        <input type="tel_mod" id="phone_mod" placeholder="Teléfono">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Link: </td>
+                    <td>
+                        <input type="url_mod" id="weblink_mod" placeholder="Página Web">
+                    </td>
+                </tr>
+            </table>
+            <h2>Sectores en los que trabaja: </h2>
+            <table id="sectorsTableMod">
+            </table>
+            <button id="acceptModifyBtn" style="margin-top: 20px;">Aceptar</button>
+            <button id="cancelModifyBtn" style="background-color: red; margin: 20px 0;">Cancelar</button>
         </div>
         <div class="hidden" id="passwordDiv">
             <h1>Cambiar contraseña.</h1>
-            <div class="inputDiv">
+            <form autocomplete="off">
+                <table>
+                    <tr>
+                        <td>Contraseña anterior: </td>
+                        <td><input type="password" id="oldPasswordMod"></td>
+                    </tr>
+                    <tr>
+                        <td>Repetir contraseña: </td>
+                        <td><input type="password" id="oldPasswordRepeatMod"></td>
+                    </tr>
+                    <tr>
+                        <td>Nueva contraseña: </td>
+                        <td><input type="password" id="newPasswordMod"></td>
+                    </tr>
+                    <tr>
+                        <td>Repetir nueva contraseña: </td>
+                        <td><input type="password" id="newPasswordRepeatMod"></td>
+                    </tr>
+                </table>    
+            </form>
+            
+            <div class="inputDiv" style="margin-top: 20px;">
                 <button id="acceptPasswordModifyBtn">Aceptar</button>
                 <button id="cancelPasswordModifyBtn" style="background-color: red;">Cancelar</button>
             </div>
@@ -146,13 +240,15 @@
 
 
 
-
+   
     <!-- /* CUIDADO, REEMPLAZAR URL */ -->
+    <script src="http://localhost/WebINGEO2Loader/scripts/croppie.js"></script>
     <script src="http://localhost/WebINGEO2Loader/scripts/functions.js"></script>
     <script src="http://localhost/WebINGEO2Loader/welcome/scripts/welcome.js"></script>
 
-
+    
     <script src="scripts/adminProfile.js"></script>
+    <script src="scripts/adminPassword.js"></script>
     <script src="scripts/adminUsers.js"></script>
     <script src="scripts/adminSectors.js"></script>
     <script src="scripts/welcomeAdmin.js"></script>

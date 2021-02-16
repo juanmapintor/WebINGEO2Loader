@@ -12,7 +12,7 @@
             $response = $result -> fetch_array(MYSQLI_ASSOC);
             $result -> close();
 
-            if ($mysqli->multi_query("SELECT sector_category, sector_name FROM sectors INNER JOIN users_sectors ON sectors.idSectors = users_sectors.sectorsId WHERE userId = ".$idUser)) {
+            if ($mysqli->multi_query("SELECT idSectors, sector_category, sector_name FROM sectors INNER JOIN users_sectors ON sectors.idSectors = users_sectors.sectorsId WHERE userId = ".$idUser)) {
                 $sectors = array();
                 do {
                     if ($result = $mysqli->store_result()) {

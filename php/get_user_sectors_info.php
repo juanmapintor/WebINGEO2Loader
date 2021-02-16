@@ -9,9 +9,8 @@
     ];
 
     if(!$mysqli->connect_errno){
-        $query = "SELECT sector_category, sector_name FROM sectors INNER JOIN users_sectors ON sectors.idSectors = users_sectors.sectorsId WHERE userId = ".$idUsers;
         
-        if ($mysqli->multi_query($query)) {
+        if ($mysqli->multi_query("SELECT sector_category, sector_name FROM sectors INNER JOIN users_sectors ON sectors.idSectors = users_sectors.sectorsId WHERE userId = ".$idUsers)) {
             $response = array();
             do {
                 if ($result = $mysqli->store_result()) {
