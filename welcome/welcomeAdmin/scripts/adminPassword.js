@@ -60,3 +60,12 @@ const acceptPasswordModify = () => {
     
 
 };
+
+const configurePasswordButtons = () => {
+    let acceptPasswordModifyBtn = document.getElementById('acceptPasswordModifyBtn');
+    let cancelPasswordModifyBtn = document.getElementById('cancelPasswordModifyBtn');
+    let passwordModifyBtn = document.getElementById('passwordModifyBtn');
+    passwordModifyBtn.onclick = showPasswordModify;
+    cancelPasswordModifyBtn.onclick = hidePasswordModify;
+    acceptPasswordModifyBtn.onclick = acceptPasswordModify;
+};

@@ -44,7 +44,7 @@ const loadProfile = () => {
 
                 response.sectors.forEach(sector => {
                     let cell = sectorsTableWork.insertRow().insertCell();
-                    cell.innerHTML = sector[1] + " de " + sector[2];
+                    cell.innerHTML = sector[1] + " - " + sector[2];
                     cell.setAttribute('style', 'padding: 10px;');
                 });
 
@@ -284,3 +284,12 @@ const onModifyChange = () => {
         showCropImage(imageFile.files[0]);
     };
 }; 
+
+const configureProfileButtons = () => {
+    let profileModifyBtn = document.getElementById('profileModifyBtn');
+    let acceptModifyBtn = document.getElementById('acceptModifyBtn');
+    let cancelModifyBtn = document.getElementById('cancelModifyBtn');
+    profileModifyBtn.onclick = showModify;
+    acceptModifyBtn.onclick = acceptModify;
+    cancelModifyBtn.onclick = hideModify;
+};

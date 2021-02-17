@@ -1,4 +1,3 @@
-
 const configureTabs = () =>{
     const selectTab = (tabs, tabNum) => {
         let tabContents = document.querySelectorAll('.tabContent');
@@ -21,48 +20,24 @@ const configureTabs = () =>{
 };
 
 const onChange = () => {
-    let sector_category = document.getElementById('sector_category');
-    let sector_name = document.getElementById('sector_name');
-
-    sector_category.onchange = () => {
-        sector_category.removeAttribute('style');
-    };
-
-    sector_name.onchange = () => {
-        sector_name.removeAttribute('style');
-    };
-
+    onSectorChange();
     onModifyChange();
+    onArticleChange();
+};
 
+const configureGeneralButtons = () => {
+    let exitButton = document.getElementById('exitButton');
+    exitButton.onclick = logOut;
 };
 
 const configureButtons = () => {
-    let exitButton = document.getElementById('exitButton');
-    let addSectorBtn = document.getElementById('addSectorBtn');
-    let addUserBtn = document.getElementById('addUserBtn');
-    let profileModifyBtn = document.getElementById('profileModifyBtn');
-    let acceptModifyBtn = document.getElementById('acceptModifyBtn');
-    let cancelModifyBtn = document.getElementById('cancelModifyBtn');
-    let acceptPasswordModifyBtn = document.getElementById('acceptPasswordModifyBtn');
-    let cancelPasswordModifyBtn = document.getElementById('cancelPasswordModifyBtn');
-    let passwordModifyBtn = document.getElementById('passwordModifyBtn');
-
-
-    addSectorBtn.onclick = add_sector;
-    addUserBtn.onclick = add_user;
-    exitButton.onclick = logOut;
-    profileModifyBtn.onclick = showModify;
-    acceptModifyBtn.onclick = acceptModify;
-    cancelModifyBtn.onclick = hideModify;
-    passwordModifyBtn.onclick = showPasswordModify;
-    cancelPasswordModifyBtn.onclick = hidePasswordModify;
-    acceptPasswordModifyBtn.onclick = acceptPasswordModify;
-
-
-
+    configureGeneralButtons();
+    configureSectorButtons();
+    configureUsersButtons();
+    configureProfileButtons();
+    configurePasswordButtons();
+    configureArticleButtons();
 };
-
-
 
 window.onload = () => {
     checkLog(true);
@@ -71,6 +46,8 @@ window.onload = () => {
     loadSector('delete', delSector);
     loadUsers();
     loadProfile();
+    loadArticleSectorsSelect();
+    loadCKEditor();
     onChange();
 };
 

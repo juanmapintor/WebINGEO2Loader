@@ -50,7 +50,72 @@
     </div>
 
     <div class="tabContent">
-        <h1>Agregar un nuevo articulo.</h1>
+        <div class="division" id="introArticleDiv">
+            <h1>Agregar un nuevo articulo.</h1>
+            <table>
+                <tr>
+                    <td>Titulo: </td>
+                    <td>
+                        <input type="text" id="articleTitle" placeholder="Título">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descripción: </td>
+                    <td>
+                        <textarea id="shortDescTitle" cols="30" rows="10" maxlength="255" placeholder="Descripción"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Imagen: </td>
+                    <td id="croppieTD">
+                        <div class="inputDiv">
+                            <input type="file" id="imageFileArticle" accept="image/*">
+                        </div>
+                        <div class="croppieDiv" id="croppieDivArticle">
+                            <img src="" id="croppieImageArticle">
+                        </div>
+                        <div class="acceptDiv" id="acceptDivArticle">
+                            <button id="acceptCroppieButtonArticle">Aceptar</button>
+                        </div>
+                        <div class="inputDiv" id="resultDivArticle">
+                            <img src="" id="resultImageArticle">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Carousel? </td>
+                    <td><input type="checkbox" id="carouselArticle"></td>
+                </tr>
+                <tr>
+                    <td>Noticia? </td>
+                    <td><input type="checkbox" id="newsArticle"></td>
+                </tr>
+                <tr>
+                    <td>Destacado? </td>
+                    <td><input type="checkbox" id="highlightedArticle"></td>
+                </tr>
+                <tr>
+                    <td>Sector: </td>
+                    <td>
+                        <select id="sectorsSelect" style="height: 30px; margin: 10px 0;">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Keywords: </td>
+                    <td><input type="text" id="keywordsArticle"></td>
+                </tr>
+            </table>
+            <button id="showEditorButton" style="margin: 20px 0;" >Mostrar Editor</button>
+            <div class="ck-content" id="articleResult"></div>
+            <button class="hidden" id="uploadArticleButton" style="margin: 20px 0;">Subir Articulo!</button>
+        </div>
+        <div class="hidden" id="articleEditorDiv">
+            <h1>Editor</h1>
+            <div id="editor"></div>
+            <button id="acceptEditorButton" style="margin: 20px 0;">Aceptar</button>
+        </div>
+        
     </div>
 
     <div class="tabContent">
@@ -228,25 +293,13 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-   
     <!-- /* CUIDADO, REEMPLAZAR URL */ -->
     <script src="http://localhost/WebINGEO2Loader/scripts/croppie.js"></script>
     <script src="http://localhost/WebINGEO2Loader/scripts/functions.js"></script>
     <script src="http://localhost/WebINGEO2Loader/welcome/scripts/welcome.js"></script>
 
-    
+    <script src="scripts/ckeditor/ckeditor.js"></script>
+    <script src="scripts/adminArticles.js"></script>
     <script src="scripts/adminProfile.js"></script>
     <script src="scripts/adminPassword.js"></script>
     <script src="scripts/adminUsers.js"></script>

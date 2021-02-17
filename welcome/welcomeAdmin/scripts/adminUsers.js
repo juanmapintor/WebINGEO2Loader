@@ -80,3 +80,8 @@ const add_user = () => {
     
 };
 
+const configureUsersButtons = () => {
+    let addUserBtn = document.getElementById('addUserBtn');
+    addUserBtn.onclick = add_user;
+};
+
