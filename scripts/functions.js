@@ -22,16 +22,16 @@ const httpRequestPromise = (url, params = null, method = 'POST', responseType='j
     return new Promise((resolve, reject) => {
         let httpRequest = new XMLHttpRequest();
 
-        if (params && typeof params === 'object') {
-            params = Object.keys(params).map((key) => {
-                return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
-            }).join('&');
-        }
+            if (params && typeof params === 'object') {
+                params = Object.keys(params).map((key) => {
+                    return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+                }).join('&');
+            }
 
-        if(method == 'GET') {
-            url = url + '?' + params;
-        }
-
+            if(method == 'GET') {
+                url = url + '?' + params;
+            }
+        
         httpRequest.open(method, url, true);
         headers.forEach((header) => {
             httpRequest.setRequestHeader(header.header, header.headerValue);

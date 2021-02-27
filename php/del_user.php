@@ -1,7 +1,20 @@
 <?php
 session_start();
 
-
+function rrmdir($dir) { 
+    if (is_dir($dir)) { 
+      $objects = scandir($dir);
+      foreach ($objects as $object) { 
+        if ($object != "." && $object != "..") { 
+          if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
+            rrmdir($dir. DIRECTORY_SEPARATOR .$object);
+          else
+            unlink($dir. DIRECTORY_SEPARATOR .$object); 
+        } 
+      }
+      rmdir($dir); 
+    } 
+}
 
 if(isset($_POST["user_id"]) && isset($_SESSION["logged_in"]) && isset($_SESSION["is_admin"])){
     $user_id = $_POST["user_id"];
@@ -14,15 +27,8 @@ if(isset($_POST["user_id"]) && isset($_SESSION["logged_in"]) && isset($_SESSION[
                 
                 $dir = "../res/".$user_id;
 
-                $files = glob($dir.'/*');
-                foreach($files as $file){
-                    if(is_file($file)) {
-                        unlink($file);
-                    }
-                }
-
-                rmdir($dir);
-
+                rrmdir($dir); 
+                
                 $response = [
                     "success" => true,
                     "affected_rows" => $stmt->affected_rows

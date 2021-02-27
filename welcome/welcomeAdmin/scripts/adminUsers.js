@@ -9,7 +9,13 @@ const loadUsers = () => {
     newRow.insertCell().innerHTML = 'Mail';
     newRow.insertCell().innerHTML = 'Eliminar';
     httpRequestPromise(general_url + 'user_load.php', null, 'POST', 'json').then((response) => {
-        response.forEach(element => addUserTableRow(element));
+        if(!response.error){
+            hideMsg();
+            response.forEach(element => addUserTableRow(element)); 
+        } else {
+            showMsg(true, response.error);
+        }
+        
     });
 };
 
@@ -33,12 +39,17 @@ const delUser = (id) => {
     let params = {
         user_id: id
     };
-    httpRequestPromise(general_url + 'del_user.php', params, 'POST', 'json').then(response => {
-        showMsg(false, 'Eliminado!');
-        loadUsers();
-    });
 
     showMsg(false, 'Eliminando...', 0);
+    httpRequestPromise(general_url + 'del_user.php', params, 'POST', 'json').then(response => {
+        if(!response.error){
+            showMsg(false, 'Eliminado!');
+            reset();
+        } else {
+            showMsg(true, response.error);
+        }
+        loadUsers();
+    });
 };
 
 const add_user = () => {
@@ -63,6 +74,7 @@ const add_user = () => {
                 is_admin: document.getElementById('is_admin').checked ? 1 : 0 
             };
 
+            showMsg(false, 'Agregando... <br> Por favor, <br> espere.', 0);
             httpRequestPromise(general_url + 'add_user.php', params, 'POST', 'json').then(response => {
                 if(response.error){
                     showMsg(true, response.error);
@@ -70,9 +82,9 @@ const add_user = () => {
                     showMsg(false, 'Agregado!');
                 }
                 loadUsers();
+                reset();
             });
 
-            showMsg(false, 'Agregando... <br> Por favor, <br> espere.', 0);
         }); 
     }
     

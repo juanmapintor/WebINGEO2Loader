@@ -6,9 +6,260 @@
     <title>USUARIO</title>
     <!-- /* CUIDADO, REEMPLAZAR URL */ -->
     <link rel="stylesheet" href="http://localhost/WebINGEO2Loader/welcome/styles/welcome.css">
+    <link rel="stylesheet" href="http://localhost/WebINGEO2Loader/styles/croppie.css">
 </head>
 <body>
-<h1>aosidflaksdf</h1>
+
+    <div class="tabs">
+        <div class="tab">
+            <h4>Articulos</h4>
+        </div>
+        <div class="tab">
+            <h4>Mi Perfil</h4>
+        </div>
+        <div class="pertab selected">
+            <button id="exitButton">Salir</button>
+        </div>
+    </div>
+
+    <div class="tabContent">
+        <div class="division" id="introArticleDiv">
+            <h1>Agregar un nuevo articulo.</h1>
+            <table>
+                <tr>
+                    <td>Titulo: </td>
+                    <td>
+                        <input type="text" id="articleTitle" placeholder="Título">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descripción: </td>
+                    <td>
+                        <textarea id="shortDescTitle" cols="30" rows="10" maxlength="255" placeholder="Descripción"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Imagen: </td>
+                    <td id="croppieTD">
+                        <div class="inputDiv">
+                            <input type="file" id="imageFileArticle" accept="image/*">
+                        </div>
+                        <div class="croppieDiv" id="croppieDivArticle">
+                            <img src="" id="croppieImageArticle">
+                        </div>
+                        <div class="acceptDiv" id="acceptDivArticle">
+                            <button id="acceptCroppieButtonArticle">Aceptar</button>
+                        </div>
+                        <div class="inputDiv" id="resultDivArticle">
+                            <img src="" id="resultImageArticle">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Carousel? </td>
+                    <td><input type="checkbox" id="carouselArticle"></td>
+                </tr>
+                <tr>
+                    <td>Noticia? </td>
+                    <td><input type="checkbox" id="newsArticle"></td>
+                </tr>
+                <tr>
+                    <td>Destacado? </td>
+                    <td><input type="checkbox" id="highlightedArticle"></td>
+                </tr>
+                <tr>
+                    <td>Sector: </td>
+                    <td>
+                        <select id="sectorsSelect" style="height: 30px; margin: 10px 0;">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Keywords: </td>
+                    <td><input type="text" id="keywordsArticle"></td>
+                </tr>
+            </table>
+            <button id="showEditorButton" style="margin: 20px 0;" >Siguiente</button>
+
+        </div>
+        <div class="hidden" id="articleEditorDiv">
+            <h1>Editor</h1>
+            <div id="editor"></div>
+            <button id="acceptEditorButton" style="margin: 20px 0 0 0;">Aceptar</button>
+            <div class="ck-content hidden" style="width: 100%; border: solid gray 1px; padding: 20px; border-radius: 5px;" id="articleResult"></div>
+            <button class="hidden" id="editArticleButton" style="margin: 20px 0 0 0; background-color: blue;">Editar</button>
+            <button id="cancelEditorButton" style="margin: 20px 0; background-color: red;">Cancelar</button>
+            <button class="hidden" id="uploadArticleButton" style="margin: 20px 0 0 0;">Subir Articulo!</button>
+        </div>
+        
+    </div>
+
+    <div class="tabContent">
+        <div class="division" id="infoShow">
+            <h1>Mi Perfil.</h1>
+            <img id="profile_img" alt="Imagen de perfil">            
+
+            <table>
+                <tr>
+                    <td>Nombre: </td>
+                    <td>
+                        <h4 id="full_name"></h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Usuario: </td>
+                    <td>
+                        <p id="user_name"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-Mail: </td>
+                    <td>
+                        <p id="email_info"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Título: </td>
+                    <td>
+                        <p id="degree"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descripción: </td>
+                    <td>
+                        <p id="short_description" style="margin-left: 10px;"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Teléfono: </td>
+                    <td>
+                        <h4 id="phone_number"></h4>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Link: </td>
+                    <td>
+                        <a id="weblink">
+                            <h4 id="weblinkh"></h4>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <h2>Sectores en los que trabaja: </h2>
+            <table id="sectorsTableWork">
+            </table>
+            <button id="profileModifyBtn" style="margin-top: 20px;">Modificar</button>
+            <button id="passwordModifyBtn" style="margin: 20px 0;">Cambiar contraseña.</button>
+
+        </div>
+        <div class="hidden" id="modifyDiv">
+            <h1>Modificando</h1>
+
+            <table>
+                <tr>
+                    <td>Foto de perfil: </td>
+                    <td>
+                        <div class="inputDiv">
+                            <input type="file" id="imageFile" accept="image/*">
+                        </div>
+                        <div class="croppieDiv" id="croppieDiv">
+                            <img src="" id="croppieImage">
+                        </div>
+                        <div class="acceptDiv" id="acceptDiv">
+                            <button id="acceptCroppieButton">Aceptar</button>
+                        </div>
+                        <div class="inputDiv" id="resultDiv">
+                            <img src="" id="resultImage">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nombre: </td>
+                    <td>
+                        <input type="text" id="first_name_mod" placeholder="Nombre">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Apellido: </td>
+                    <td>
+                        <input type="text" id="last_name_mod" placeholder="Apellido">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Usuario: </td>
+                    <td>
+                        <input type="text" id="user_name_mod" placeholder="Usuario">
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-Mail: </td>
+                    <td>
+                        <input type="email" id="email_mod" placeholder="mail@mail.com">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Título: </td>
+                    <td>
+                        <input type="text" id="degree_mod" placeholder="Título">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descripción: </td>
+                    <td>
+                        <textarea id="short_description_mod" cols="30" rows="10" maxlength="255" placeholder="Descripción corta del usuario."></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Teléfono: </td>
+                    <td>
+                        <input type="tel" id="phone_mod" placeholder="Teléfono">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Link: </td>
+                    <td>
+                        <input type="url_mod" id="weblink_mod" placeholder="Página Web">
+                    </td>
+                </tr>
+            </table>
+            <h2>Sectores en los que trabaja: </h2>
+            <table id="sectorsTableMod">
+            </table>
+            <button id="acceptModifyBtn" style="margin-top: 20px;">Aceptar</button>
+            <button id="cancelModifyBtn" style="background-color: red; margin: 20px 0;">Cancelar</button>
+        </div>
+        <div class="hidden" id="passwordDiv">
+            <h1>Cambiar contraseña.</h1>
+            <form autocomplete="off">
+                <table>
+                    <tr>
+                        <td>Contraseña anterior: </td>
+                        <td><input type="password" id="oldPasswordMod"></td>
+                    </tr>
+                    <tr>
+                        <td>Repetir contraseña: </td>
+                        <td><input type="password" id="oldPasswordRepeatMod"></td>
+                    </tr>
+                    <tr>
+                        <td>Nueva contraseña: </td>
+                        <td><input type="password" id="newPasswordMod"></td>
+                    </tr>
+                    <tr>
+                        <td>Repetir nueva contraseña: </td>
+                        <td><input type="password" id="newPasswordRepeatMod"></td>
+                    </tr>
+                </table>    
+            </form>
+            
+            <div class="inputDiv" style="margin-top: 20px;">
+                <button id="acceptPasswordModifyBtn">Aceptar</button>
+                <button id="cancelPasswordModifyBtn" style="background-color: red;">Cancelar</button>
+            </div>
+            
+        </div>
+
+    </div>
+
     <div class="Msg successMsg">
         <h1 id="successMsgHolder"></h1>
     </div>
@@ -18,7 +269,15 @@
     </div>
 
     <!-- /* CUIDADO, REEMPLAZAR URL */ -->
+    <script src="http://localhost/WebINGEO2Loader/scripts/croppie.js"></script>
     <script src="http://localhost/WebINGEO2Loader/scripts/functions.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/welcome.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/ckeditor/ckeditor.js"></script>
+
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminArticles.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminProfile.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminPassword.js"></script>
+    
     <script src="scripts/welcomeUser.js"></script>
 </body>
 </html>

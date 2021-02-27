@@ -106,14 +106,17 @@
                     <td><input type="text" id="keywordsArticle"></td>
                 </tr>
             </table>
-            <button id="showEditorButton" style="margin: 20px 0;" >Mostrar Editor</button>
-            <div class="ck-content" id="articleResult"></div>
-            <button class="hidden" id="uploadArticleButton" style="margin: 20px 0;">Subir Articulo!</button>
+            <button id="showEditorButton" style="margin: 20px 0;" >Siguiente</button>
+
         </div>
         <div class="hidden" id="articleEditorDiv">
             <h1>Editor</h1>
             <div id="editor"></div>
-            <button id="acceptEditorButton" style="margin: 20px 0;">Aceptar</button>
+            <button id="acceptEditorButton" style="margin: 20px 0 0 0;">Aceptar</button>
+            <div class="ck-content hidden" style="width: 100%; border: solid gray 1px; padding: 20px; border-radius: 5px;" id="articleResult"></div>
+            <button class="hidden" id="editArticleButton" style="margin: 20px 0 0 0; background-color: blue;">Editar</button>
+            <button id="cancelEditorButton" style="margin: 20px 0; background-color: red;">Cancelar</button>
+            <button class="hidden" id="uploadArticleButton" style="margin: 20px 0 0 0;">Subir Articulo!</button>
         </div>
         
     </div>
@@ -236,7 +239,7 @@
                 <tr>
                     <td>Teléfono: </td>
                     <td>
-                        <input type="tel_mod" id="phone_mod" placeholder="Teléfono">
+                        <input type="tel" id="phone_mod" placeholder="Teléfono">
                     </td>
                 </tr>
                 <tr>
@@ -297,11 +300,11 @@
     <script src="http://localhost/WebINGEO2Loader/scripts/croppie.js"></script>
     <script src="http://localhost/WebINGEO2Loader/scripts/functions.js"></script>
     <script src="http://localhost/WebINGEO2Loader/welcome/scripts/welcome.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/ckeditor/ckeditor.js"></script>
 
-    <script src="scripts/ckeditor/ckeditor.js"></script>
-    <script src="scripts/adminArticles.js"></script>
-    <script src="scripts/adminProfile.js"></script>
-    <script src="scripts/adminPassword.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminArticles.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminProfile.js"></script>
+    <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminPassword.js"></script>
     <script src="scripts/adminUsers.js"></script>
     <script src="scripts/adminSectors.js"></script>
     <script src="scripts/welcomeAdmin.js"></script>

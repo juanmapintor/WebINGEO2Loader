@@ -113,7 +113,7 @@ const accept = () => {
 
 };
 
-const configureButtons = () => {
+const configureFTButtons = () => {
     let acceptButton = document.getElementById('acceptButton');
     acceptButton.onclick = accept;
 
@@ -150,7 +150,7 @@ const setSectors = (id, set) => {
 
 window.onload = () => {
     checkLog();
-    configureButtons();
+    configureFTButtons();
     configueOnChange();
     loadSector('select', setSectors, 'sectorsTable2');
 };

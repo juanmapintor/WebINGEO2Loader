@@ -27,10 +27,10 @@ const loadProfile = () => {
     let weblinkh =  document.getElementById('weblinkh');
     let sectorsTableWork = document.getElementById('sectorsTableWork');
     
-
     httpRequestPromise(general_url + 'get_user_info.php', null, 'POST', 'json').then(response => {
         if(response) {
             if(!response.error){
+                hideMsg();
                 profileImg.setAttribute('src', response.profile_img);
                 fullName.innerHTML = response.first_name + ' ' + response.last_name;
                 userName.innerHTML = response.usr_name;
@@ -173,6 +173,8 @@ const acceptModify = () => {
             if(response){
                 if(!response.error){
                     showMsg(false, "Exito!", 1000, hideModify);
+                   
+                   
                 } else {
                     let error = "Error: ";
                     switch(response.error){
@@ -201,6 +203,8 @@ const acceptModify = () => {
 const hideModify = () => {
     
     loadProfile();
+    loadArticleSectorsSelect();
+    reset();
 
     let infoShow = document.getElementById('infoShow');
     let modifyDiv = document.getElementById('modifyDiv');

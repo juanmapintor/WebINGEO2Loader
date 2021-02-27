@@ -96,3 +96,41 @@ const addTableRow = (row, type, action, tableId, selected = false) => {
     }
 
 };
+
+const configureTabs = () =>{
+    const selectTab = (tabs, tabNum) => {
+        let tabContents = document.querySelectorAll('.tabContent');
+        tabs.forEach(tab => {
+            tab.classList.remove('selected');
+        });
+        tabContents.forEach(tabContent => {
+            tabContent.classList.remove('selected');
+        });
+
+        tabs[tabNum].classList.add('selected');
+        tabContents[tabNum].classList.add('selected');
+    };
+    let tabs = document.querySelectorAll('.tab');
+    for(let i = 0; i < tabs.length; i++){
+        tabs[i].onclick = () => {
+            selectTab(tabs, i);
+        };
+    }
+};
+
+const configureGeneralButtons = () => {
+    let exitButton = document.getElementById('exitButton');
+    exitButton.onclick = logOut;
+};
+
+const configureButtons = () => {
+    configureGeneralButtons();
+    configureProfileButtons();
+    configurePasswordButtons();
+    configureArticleButtons();
+};
+
+const onChange = () => {
+    onModifyChange();
+    onArticleChange();
+};

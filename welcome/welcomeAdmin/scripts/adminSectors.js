@@ -15,17 +15,21 @@ const add_sector = () => {
             sector_category: sector_category.value,
             sector_name: sector_name.value
         }; 
-        
+
+        showMsg(false, 'Anadiendo...', 0);
         httpRequestPromise(general_url + 'add_sector.php', params, 'POST', 'json').then((response) => {
             if(response.error){
                 showMsg(true, response.error);
             } else {
                 showMsg(false, 'Añadido!');
+                loadSector('delete', delSector);
+                loadProfile();
+                loadArticleSectorsSelect();
             }
-            loadSector('delete', delSector);
+            reset();
         });
 
-        showMsg(false, 'Anadiendo...', 0);
+        
     }
 
 };
@@ -34,15 +38,19 @@ const delSector = (id) => {
     let params = {
         sector_id: id
     };
+    showMsg(false, 'Eliminando...', 0);
     httpRequestPromise(general_url + 'del_sector.php', params, 'POST', 'json').then(response => {
         if(response.error){
             showMsg(true, response.error);
         } else {
             showMsg(false, 'Eliminado!');
+            loadSector('delete', delSector);
+            loadProfile();
+            loadArticleSectorsSelect();
         }
-        loadSector('delete', delSector);
+        reset();
     });
-    showMsg(false, 'Eliminando...', 0);
+    
 };
 
 const onSectorChange = () => {

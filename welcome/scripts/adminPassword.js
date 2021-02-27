@@ -30,6 +30,7 @@ const acceptPasswordModify = () => {
         httpRequestPromise(general_url + 'get_pass.php', null, 'POST', 'json').then(response => {
             if(response){
                 if(!response.error){
+                    hideMsg();
                     crypto.subtle.digest('SHA-256', StringToArrayBuffer(oldPasswordMod.value+response.usr_password_salt)).then((hashedPass) => {
                         if(response.usr_password == ArrayBufferToString(hashedPass)) {
                             crypto.subtle.digest('SHA-256', StringToArrayBuffer(newPasswordMod.value+response.usr_password_salt)).then((newHashedPass) => {
