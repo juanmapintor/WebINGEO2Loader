@@ -3,6 +3,7 @@ window.onload = () => {
     configureTabs();
     configureButtons();
     loadProfile();
+    loadArticles();
     loadArticleSectorsSelect();
     loadCKEditor();
     onChange();

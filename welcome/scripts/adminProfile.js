@@ -42,11 +42,18 @@ const loadProfile = () => {
                 weblinkh.innerHTML = response.web_link;
                 sectorsTableWork.innerHTML = '';
 
-                response.sectors.forEach(sector => {
+                if(response.sectors.length > 0) {
+                    response.sectors.forEach(sector => {
+                        let cell = sectorsTableWork.insertRow().insertCell();
+                        cell.innerHTML = sector[1] + " - " + sector[2];
+                        cell.setAttribute('style', 'padding: 10px;');
+                    });
+                } else {
                     let cell = sectorsTableWork.insertRow().insertCell();
-                    cell.innerHTML = sector[1] + " - " + sector[2];
+                    cell.innerHTML = "Aun no trabaja en ningun sector. Modifique su perfil.";
                     cell.setAttribute('style', 'padding: 10px;');
-                });
+                }
+                
 
                 loadModify(response);
 
@@ -169,12 +176,11 @@ const acceptModify = () => {
     }
 
     if(ready && JSON.stringify(params) != '{}'){
+        showMsg(false, 'Subiendo, por favor espere...', 0);
         httpRequestPromise(general_url + 'user_modify.php', params, 'POST', 'json').then(response => {
             if(response){
                 if(!response.error){
                     showMsg(false, "Exito!", 1000, hideModify);
-                   
-                   
                 } else {
                     let error = "Error: ";
                     switch(response.error){

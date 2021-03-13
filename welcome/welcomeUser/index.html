@@ -11,8 +11,11 @@
 <body>
 
     <div class="tabs">
-        <div class="tab">
+        <div class="tab selected">
             <h4>Articulos</h4>
+        </div>
+        <div class="tab">
+            <h4>Mis Articulos</h4>
         </div>
         <div class="tab">
             <h4>Mi Perfil</h4>
@@ -22,7 +25,7 @@
         </div>
     </div>
 
-    <div class="tabContent">
+    <div class="tabContent selected">
         <div class="division" id="introArticleDiv">
             <h1>Agregar un nuevo articulo.</h1>
             <table>
@@ -92,6 +95,12 @@
             <button class="hidden" id="uploadArticleButton" style="margin: 20px 0 0 0;">Subir Articulo!</button>
         </div>
         
+    </div>
+
+    <div class="tabContent">
+        <h1>Mis Articulos</h1>
+        <table id="articlesTable">
+        </table>
     </div>
 
     <div class="tabContent">
@@ -277,7 +286,7 @@
     <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminArticles.js"></script>
     <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminProfile.js"></script>
     <script src="http://localhost/WebINGEO2Loader/welcome/scripts/adminPassword.js"></script>
-    
+
     <script src="scripts/welcomeUser.js"></script>
 </body>
 </html>

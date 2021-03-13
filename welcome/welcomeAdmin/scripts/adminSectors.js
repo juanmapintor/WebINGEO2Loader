@@ -46,6 +46,7 @@ const delSector = (id) => {
             showMsg(false, 'Eliminado!');
             loadSector('delete', delSector);
             loadProfile();
+            loadArticles();
             loadArticleSectorsSelect();
         }
         reset();

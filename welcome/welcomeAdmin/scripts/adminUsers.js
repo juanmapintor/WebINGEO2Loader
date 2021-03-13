@@ -11,7 +11,12 @@ const loadUsers = () => {
     httpRequestPromise(general_url + 'user_load.php', null, 'POST', 'json').then((response) => {
         if(!response.error){
             hideMsg();
-            response.forEach(element => addUserTableRow(element)); 
+            if(response.length > 0) {
+               response.forEach(element => addUserTableRow(element)); 
+            } else {
+                addUserTableRow(null, true);
+            }
+             
         } else {
             showMsg(true, response.error);
         }
@@ -19,20 +24,23 @@ const loadUsers = () => {
     });
 };
 
-const addUserTableRow = (row) => {
+const addUserTableRow = (row, empty = false) => {
     let usersTable = document.getElementById('usersTable');
     let newRow = usersTable.insertRow();
-    newRow.insertCell().innerHTML = row[1];
-    newRow.insertCell().innerHTML = row[2];
-    newRow.insertCell().innerHTML = row[3];
-    newRow.insertCell().innerHTML = row[4];
-    let newBtnCell = newRow.insertCell();
-    let newBtn = document.createElement('button');
-    newBtnCell.classList.add('delTd');
-    newBtn.innerHTML = 'X';
-    newBtn.addEventListener('click', () => delUser(row[0]));
-    newBtnCell.appendChild(newBtn);
-
+    if(!empty) {
+        newRow.insertCell().innerHTML = row[1];
+        newRow.insertCell().innerHTML = row[2];
+        newRow.insertCell().innerHTML = row[3];
+        newRow.insertCell().innerHTML = row[4];
+        let newBtnCell = newRow.insertCell();
+        let newBtn = document.createElement('button');
+        newBtnCell.classList.add('delTd');
+        newBtn.innerHTML = 'X';
+        newBtn.addEventListener('click', () => delUser(row[0]));
+        newBtnCell.appendChild(newBtn);
+    } else {
+        newRow.innerHTML = "No hay usuarios que mostrar";
+    }
 };
 
 const delUser = (id) => {

@@ -63,37 +63,55 @@ const loadSector = (type, action, tableId = 'sectorsTable', selectedSectors = []
     }
 
     httpRequestPromise(general_url + 'sector_load.php', null, 'POST', 'json').then((response) => {
-        response.forEach(element => addTableRow(element, type, action, tableId, selectedSectors.includes(element[0])));
+        if(response){
+            if(!response.error){
+                if(response.length > 0) {
+                    response.forEach(element => addTableRow(element, type, action, tableId, selectedSectors.includes(element[0])));
+                } else {
+                    addTableRow(null, null, null, tableId, false, true);
+                }
+            } else {
+                showMsg(true, response.error);
+            }
+        }
+        
     });
 };
 
-const addTableRow = (row, type, action, tableId, selected = false) => {
+const addTableRow = (row, type, action, tableId, selected = false, empty = false) => {
     let sectorsTable = document.getElementById(tableId);
     let newRow = sectorsTable.insertRow();
-    newRow.insertCell().innerHTML = row[1];
-    newRow.insertCell().innerHTML = row[2];
+    
+    if(!empty) {
+        newRow.insertCell().innerHTML = row[1];
+        newRow.insertCell().innerHTML = row[2];
 
-    if(type) {
-        let newActionCell = newRow.insertCell();
-        let newAction;
-        if(type == 'delete') {
-            newAction = document.createElement('button');
-            newActionCell.classList.add('delTd');
-            newAction.innerHTML = 'X';
-            newAction.addEventListener('click', () => action(row[0]));
-        }
-
-        if(type == 'select') {
-            newAction = document.createElement('input');
-            newAction.setAttribute('type', 'checkbox');
-            newAction.checked = selected;
-            if(selected) {
-                action(row[0], selected);
+        if(type) {
+            let newActionCell = newRow.insertCell();
+            let newAction;
+            if(type == 'delete') {
+                newAction = document.createElement('button');
+                newActionCell.classList.add('delTd');
+                newAction.innerHTML = 'X';
+                newAction.addEventListener('click', () => action(row[0]));
             }
-            newAction.addEventListener('click', () => action(row[0], newAction.checked));
+
+            if(type == 'select') {
+                newAction = document.createElement('input');
+                newAction.setAttribute('type', 'checkbox');
+                newAction.checked = selected;
+                if(selected) {
+                    action(row[0], selected);
+                }
+                newAction.addEventListener('click', () => action(row[0], newAction.checked));
+            }
+            newActionCell.appendChild(newAction);
         }
-        newActionCell.appendChild(newAction);
+    } else {
+        newRow.innerHTML  = "No hay sectores que mostrar. Agrega uno!";
     }
+    
+    
 
 };
 

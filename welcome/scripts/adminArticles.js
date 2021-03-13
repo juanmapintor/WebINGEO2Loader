@@ -76,9 +76,9 @@ const loadArticleSectorsSelect = () => {
     });
 };
 
-const loadCKEditor = () => {
+const loadCKEditor = (id = 'editor') => {
         ClassicEditor
-        .create(document.getElementById('editor'), {
+        .create(document.getElementById(id), {
             fontFamily: {
                 options: [
                     'default',
@@ -157,7 +157,7 @@ const loadCKEditor = () => {
             }
         } )
 			.then( editor => {
-				window.editor = editor;
+				window[id] = editor;
 			})
 			.catch( error => {
 				console.error( 'Oops, something went wrong!' );
@@ -173,6 +173,7 @@ const configureArticleButtons = () => {
     showEditorButton.onclick = () => {
         let articleParams = {};
         if(checkReadiness(articleParams)){
+            showMsg(false, 'Subiendo, por favor espere...', 0);
             httpRequestPromise(general_url + 'article_semi_upload.php', articleParams, 'POST', 'json').then(response => {
                 if(response.success){
                     hideMsg();
@@ -228,6 +229,7 @@ const configureArticleButtons = () => {
         let params = {
             html_content: document.getElementById('articleResult').innerHTML
         };
+        showMsg(false, 'Subiendo, por favor espere...', 0);
         httpRequestPromise(general_url + 'article_finish_upload.php', params, 'POST', 'json').then(response => {
             if(response){
                 if(response.success){
@@ -237,6 +239,7 @@ const configureArticleButtons = () => {
                     articleEditorDiv.classList.add('hidden');
                     articleEditorDiv.classList.remove('division');
                     reset();
+                    loadArticles();
                 } else {
                     showMsg(true, response.error);
                 }
@@ -250,10 +253,10 @@ const configureArticleButtons = () => {
 
 };
 
-const setEditorResults = () => {
-    let data = window.editor.getData();
+const setEditorResults = (editorId = 'editor', resultDivId = 'articleResult') => {
+    let data = window[editorId].getData();
     if(data) {
-        let articleResult = document.getElementById('articleResult');
+        let articleResult = document.getElementById(resultDivId);
         articleResult.innerHTML = data;
         window.editor.destroy();
         document.getElementById('editor').classList.add('hidden');
@@ -318,4 +321,58 @@ const checkReadiness = (articleParams) => {
 
     return true;
 
+};
+
+const loadArticles = () => {
+    httpRequestPromise(general_url + 'articles_load.php').then(response => {
+        if(response){
+            if(!response.error) {
+                
+                let articlesTable = document.getElementById('articlesTable');
+                articlesTable.innerHTML = '';
+                let newRow = articlesTable.insertRow(0);
+                newRow.insertCell().innerHTML = 'Titulo';
+                newRow.insertCell().innerHTML = 'Descripción';
+                newRow.insertCell().innerHTML = 'Fecha';
+                newRow.insertCell().innerHTML = 'Sector';
+                newRow.insertCell().innerHTML = 'Eliminar';
+                if(response.length > 0){
+                    response.forEach(article => {
+                        let newInfoRow = articlesTable.insertRow();
+                        newInfoRow.insertCell().innerHTML = article[0];
+                        newInfoRow.insertCell().innerHTML = article[1];
+                        newInfoRow.insertCell().innerHTML = article[2];
+                        newInfoRow.insertCell().innerHTML = article[3] + ' - ' + article[4];
+                        let newActionCell = newInfoRow.insertCell();
+                        let newAction = document.createElement('button');
+                        newActionCell.classList.add('delTd');
+                        newAction.innerHTML = 'X';
+                        newAction.addEventListener('click', () => deleteArticle(article[5]));
+                        newActionCell.appendChild(newAction);
+                    });
+                } else {
+                    articlesTable.insertRow().innerHTML = "No hay articulos propios en este momento. Crea uno!";
+                }
+                
+            } else {
+                showMsg(true, response.error);
+            }
+        }
+    });
+};
+
+const deleteArticle = (current_article) =>{
+    let params = {
+        article: current_article
+    };
+
+    httpRequestPromise(general_url + 'delete_article.php', params, 'POST', 'json').then(response =>{
+        if(response) {
+            if(response.success){
+                loadArticles();
+            } else {
+                showMsg(true, response.error);
+            }
+        }
+    });
 };

@@ -15,6 +15,7 @@ window.onload = () => {
     loadSector('delete', delSector);
     loadUsers();
     loadProfile();
+    loadArticles();
     loadArticleSectorsSelect();
     loadCKEditor();
     onChange();
