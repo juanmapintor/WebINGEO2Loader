@@ -4,7 +4,7 @@
 */
 
 const checkLog = (isAdmin = false) => {
-    httpRequestPromise('http://localhost/WebINGEO2Loader/php/login_state.php', null, 'POST', 'json').then((response) => {
+    httpRequestPromise(general_url + 'login_state.php', null, 'POST', 'json').then((response) => {
         if((!response.success || response.is_admin != isAdmin) && !response.first_time) {
             alert("No ha iniciado sesion o su sesion ha caducado.");
             logOut();

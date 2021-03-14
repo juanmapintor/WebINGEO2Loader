@@ -246,11 +246,6 @@ const configureArticleButtons = () => {
             }
         });
     };
-
-
-
-
-
 };
 
 const setEditorResults = (editorId = 'editor', resultDivId = 'articleResult') => {
@@ -327,7 +322,6 @@ const loadArticles = () => {
     httpRequestPromise(general_url + 'articles_load.php').then(response => {
         if(response){
             if(!response.error) {
-                
                 let articlesTable = document.getElementById('articlesTable');
                 articlesTable.innerHTML = '';
                 let newRow = articlesTable.insertRow(0);
@@ -366,9 +360,11 @@ const deleteArticle = (current_article) =>{
         article: current_article
     };
 
+    showMsg(false, "Eliminando articulo...", 0);
     httpRequestPromise(general_url + 'delete_article.php', params, 'POST', 'json').then(response =>{
         if(response) {
             if(response.success){
+                hideMsg();
                 loadArticles();
             } else {
                 showMsg(true, response.error);

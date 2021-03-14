@@ -79,7 +79,7 @@ Elimina cualquier session existente.
 */
 
 const logOut = () => {
-    httpRequestPromise('http://localhost/WebINGEO2Loader/php/session_end.php').then(()=>{
+    httpRequestPromise(general_url + 'session_end.php').then(()=>{
         if(location.href != 'http://localhost/WebINGEO2Loader/') location.replace('http://localhost/WebINGEO2Loader/');
     });
 };
