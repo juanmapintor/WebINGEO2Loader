@@ -1,7 +1,7 @@
 /*
     Función que realiza el login una vez que tenemos la "sal" para la contraseña. 
 */
-const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
+const loginWithSalt = (user, password, salt, is_admin) => {
     //Crypto funciona solo en localhost o en conexiones seguras (https)
     crypto.subtle.digest('SHA-256', StringToArrayBuffer(password+salt)).then((hashedPass) => {
         let params = {
@@ -41,17 +41,15 @@ const loginWithSalt = (user, password, salt, is_admin, responseMsg) => {
 const login = () => {
     let usrInput = document.getElementById('usr_name');
     let passInput = document.getElementById('usr_password');
-    let responseMsg = document.getElementById('responseMsg');
 
     if(!usrInput.value || !passInput.value) {
-        responseMsg.setAttribute('style', 'color: red;')
-        responseMsg.innerHTML = 'Ingrese un usuario y una contraseña.';
+        showMsg(true, "Ingrese su usuario y contraseña.")
     } else {
         httpRequestPromise(general_url + 'db_check_salt.php', { usr_name: usrInput.value}, 'POST', 'json').then((response) =>{
             if(response.error){
                 showMsg(true, response.error);
             } else {
-                loginWithSalt(usrInput.value, passInput.value, response.salt, response.is_admin, responseMsg);
+                loginWithSalt(usrInput.value, passInput.value, response.salt, response.is_admin);
             }
         }).catch((error) => {
             console.error(error);
@@ -65,4 +63,9 @@ window.onload = () => {
     logOut();
     let submitButton = document.getElementById('submit');
     submitButton.onclick = login;
+    document.onkeypress = (event) =>{
+        if(event.key == 'Enter') {
+            login();
+        }
+    };
 };
